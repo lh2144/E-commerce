@@ -14,7 +14,16 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "typeRoots": [
+      "node_moduls/@types",
+      "src/typings"
+    ],
+    "paths": {
+      "service": [
+        "src/app/core/service"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

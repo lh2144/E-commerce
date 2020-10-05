@@ -1,5 +1,5 @@
 {
-  "extends": "tslint:recommended",
+  "extends": ["tslint:recommended", "codelyzer"],
   "rules": {
     "align": {
       "options": [
@@ -19,13 +19,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "my",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "my",
       "kebab-case"
     ],
     "eofline": true,
@@ -65,7 +65,7 @@
     ],
     "no-empty": false,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-non-null-assertion": true,
@@ -95,8 +95,7 @@
       }
     },
     "typedef-whitespace": {
-      "options": [
-        {
+      "options": [{
           "call-signature": "nospace",
           "index-signature": "nospace",
           "parameter": "nospace",

@@ -1,0 +1,43 @@
+<div class="header-nav">
+  <nav class="search-group">
+    <div class="brand">
+      <span>Angular</span>
+    </div>
+    <div class="input">
+      <my-input type="text" [formControl]="searchControl" [control]="searchControl" name="search"></my-input>
+    </div>
+    <div class="btn">
+      <span></span>
+    </div>
+  </nav>
+  <div class="nav-right">
+    <div class="account dropdown">
+      <button class="btn dropbtn">
+        <span></span>
+        <span>Account</span>
+      </button>
+      <div class="drop-content">
+        <div class="account-name">Hello, hang</div>
+        <ul>
+          <li><a>Your account</a></li>
+          <li><a>Your order</a></li>
+          <li><a>Your refer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="cart dropdown">
+      <button class="btn dropbtn">
+        <span></span>
+        <span>Cart</span>
+      </button>
+      <div class="drop-content">
+        <ul>
+          <li>item1</li>
+          <li>item2</li>
+        </ul>
+      </div>
+    </div>
+    <div class="dropdown-overlay">
+    </div>
+  </div>
+</div>

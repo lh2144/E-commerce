@@ -1,0 +1,7 @@
+<label class="control-label {{labelClass}}">
+  {{label}}
+  <input class="form-control {{inputClass}}" [ngClass]="{'error': !control.valid && !control.pristine}" [name]="name"
+    [type]="type" [formControl]="control" [maxlength]="maxlength" [minlength]="minlength" [min]="min" [max]="max"
+    (Change)="onChanges($event)" />
+</label>
+<my-validation *ngIf="!control.valid && !control.pristine" [control]="control"></my-validation>
