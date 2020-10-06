@@ -1,24 +1,57 @@
 <div class="wrapper">
-  <div class="container bg-white p-5">
-    <header>Create an email account:</header>
-    <div class="row no-gutters flex-column">
-      <form [formGroup]="registerForm" class="row flex-column no-gutters">
-        <my-input type="text" name="name" [formControl]="registerForm.controls['name']"
-          [control]="registerForm.controls['name']" [label]="'Full Name:'">
-        </my-input>
-        <my-input type="text" name="email" label="Email Address" [formControl]="registerForm.controls['email']"
-          [control]="registerForm.controls['email']"></my-input>
-        <my-input type="text" name="CEmail" label="Confirm Email Address"
-          [formControl]="registerForm.controls['cEmail']" [control]="registerForm.controls['cEmail']"></my-input>
-        <my-input type="text" name="password" label="Password" [formControl]="registerForm.controls['password']"
-          [control]="registerForm.controls['password']"></my-input>
-        <my-input type="text" name="CPassword" label="Confirm Password"
-          [formControl]="registerForm.controls['cPassword']" [control]="registerForm.controls['cPassword']"></my-input>
-        <p>Your password should be a minimum of 6 characters long and contain at least 1 number.</p>
-        <my-input type="text" name="phone" label="Cell Phone Number" [formControl]="registerForm.controls['phone']"
-          [control]="registerForm.controls['phone']"></my-input>
-        <button type="submit" class="btn btn-blue">Continue</button>
-      </form>
+    <div class="container bg-white p-5">
+        <header>Create an email account:</header>
+        <div class="row no-gutters flex-column">
+            <form [formGroup]="registerForm" class="row flex-column no-gutters">
+                <my-input
+                    type="text"
+                    name="name"
+                    [formControl]="registerForm.controls['name']"
+                    [control]="registerForm.controls['name']"
+                    [label]="'Full Name:'"
+                >
+                </my-input>
+                <my-input
+                    type="text"
+                    name="email"
+                    label="Email Address"
+                    [formControl]="registerForm.controls['email']"
+                    [control]="registerForm.controls['email']"
+                ></my-input>
+                <my-input
+                    type="text"
+                    name="CEmail"
+                    label="Confirm Email Address"
+                    [formControl]="registerForm.controls['cEmail']"
+                    [control]="registerForm.controls['cEmail']"
+                ></my-input>
+                <my-input
+                    type="text"
+                    name="password"
+                    label="Password"
+                    [formControl]="registerForm.controls['password']"
+                    [control]="registerForm.controls['password']"
+                ></my-input>
+                <my-input
+                    type="text"
+                    name="CPassword"
+                    label="Confirm Password"
+                    [formControl]="registerForm.controls['cPassword']"
+                    [control]="registerForm.controls['cPassword']"
+                ></my-input>
+                <p>
+                    Your password should be a minimum of 6 characters long and
+                    contain at least 1 number.
+                </p>
+                <my-input
+                    type="text"
+                    name="phone"
+                    label="Cell Phone Number"
+                    [formControl]="registerForm.controls['phone']"
+                    [control]="registerForm.controls['phone']"
+                ></my-input>
+                <button type="submit" class="btn btn-blue">Continue</button>
+            </form>
+        </div>
     </div>
-  </div>
 </div>

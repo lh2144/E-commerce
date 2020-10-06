@@ -8,8 +8,8 @@ import { FormValidationService } from '../../service/FormValidation.service';
     styleUrls: ['./validation-message.component.scss'],
 })
 export class ValidationMessageComponent implements OnInit {
-    @Input() control: FormControl;
-    @Input() divclass: string;
+    @Input() public control: FormControl;
+    @Input() public divclass: string;
 
     public constructor() { }
 

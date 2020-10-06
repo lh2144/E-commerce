@@ -34,11 +34,11 @@
       "rxjs/Rx"
     ],
     "import-spacing": true,
-    "indent": {
-      "options": [
-        "spaces"
-      ]
-    },
+    "indent": [
+      true,
+      "spaces",
+      4
+    ],
     "max-classes-per-file": false,
     "max-line-length": [
       true,
@@ -141,7 +141,10 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "no-unused-variable": true,
-    "no-unused-expression": true
+    "no-unused-expression": true,
+    "no-unused-declaration": true,
+    "member-access": true,
+    "no-trailing-whitespace": true
   },
   "rulesDirectory": [
     "codelyzer"
