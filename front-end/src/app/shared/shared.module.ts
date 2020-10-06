@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Input, NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './component/header/header.component';
 import { InputComponent } from './component/input/input.component';
 import { ValidationMessageComponent } from './component/validation-message/validation-message.component';
@@ -9,12 +9,15 @@ import { ValidationMessageComponent } from './component/validation-message/valid
 @NgModule({
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     InputComponent,
     ValidationMessageComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     InputComponent,
