@@ -1,5 +1,15 @@
 @import "variable";
 
+label {
+  font-size: 14px;
+  font-weight: normal;
+  width: 100%;
+  margin: 16px 0 0;
+
+  &.no-margin {
+    margin-top: 0;
+  }
+}
 .error {
   border: 1px solid $red-cherry;
 }

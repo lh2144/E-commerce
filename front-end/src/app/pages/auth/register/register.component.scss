@@ -1,0 +1,10 @@
+@import "variable";
+
+.wrapper {
+  background-color: $grey-light;
+  height: 100%;
+
+  .container {
+    width: 60%;
+  }
+}
