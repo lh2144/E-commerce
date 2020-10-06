@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormControlDirective, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'my-input',
@@ -10,20 +10,19 @@ import { ControlValueAccessor, FormControl, FormControlDirective, NgControl, NG_
     ]
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
-
-    @Input() control: FormControl;
-    @Input() name: string;
-    @Input() maxlength: number;
-    @Input() minlength: number;
-    @Input() min: number;
-    @Input() max: number;
-    @Input() model: string;
-    @Input() type: string;
-    @Input() label: string;
-    @Input() labelClass: string;
-    @Input() inputClass: string;
-    @Output() modelChange: EventEmitter<string> = new EventEmitter<string>();
-    @ViewChild(FormControlDirective, { static: true }) formDirective: FormControlDirective;
+    @Input() public control: FormControl;
+    @Input() public name: string;
+    @Input() public maxlength: number;
+    @Input() public minlength: number;
+    @Input() public min: number;
+    @Input() public max: number;
+    @Input() public model: string;
+    @Input() public type: string;
+    @Input() public label: string;
+    @Input() public labelClass: string;
+    @Input() public inputClass: string;
+    @Output() public  modelChange: EventEmitter<string> = new EventEmitter<string>();
+    @ViewChild(FormControlDirective, { static: true }) public formDirective: FormControlDirective;
 
     public constructor() { }
 

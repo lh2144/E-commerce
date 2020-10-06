@@ -1,0 +1,64 @@
+<div class="wrapper pt-5">
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-around">
+            <div class="col-sm-12 col-md-5 bg-white p-5">
+                <form
+                    class="row flex-column no-gutters"
+                    [formGroup]="loginForm"
+                >
+                    <header>Existing Customer</header>
+                    <my-input
+                        [formControl]="loginForm.controls['email']"
+                        [type]="'text'"
+                        label="Email address"
+                        name="email"
+                        [control]="loginForm.controls['email']"
+                    >
+                    </my-input>
+                    <my-input
+                        [formControl]="loginForm.controls['password']"
+                        [type]="inputType"
+                        label="Password"
+                        name="password"
+                        [control]="loginForm.controls['password']"
+                    ></my-input>
+                </form>
+                <div class="avaliable-actions row no-gutters">
+                    <div class="col-5">
+                        <label class="toggle" for="toggle">
+                            show passowrd
+                            <input
+                                type="checkbox"
+                                name="toggle"
+                                id="toggle"
+                                [(ngModel)]="showPassword"
+                            />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a class="text">Forgotten your password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-blue">
+                    Login to your account
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-5 bg-white p-5">
+                <header class="mb-4">New Customers</header>
+                <p>
+                    Sign up for a Myprotein account to gain access to the lowest
+                    priced supplements in the USA. Plus a range of exclusive MP
+                    benefits.
+                </p>
+                <button
+                    type="button"
+                    class="btn btn-blue"
+                    (click)="goRegister()"
+                >
+                    Resigter Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

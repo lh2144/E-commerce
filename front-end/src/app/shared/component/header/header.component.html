@@ -1,10 +1,11 @@
 <div class="header-nav">
   <nav class="search-group">
-    <div class="brand">
+    <div class="brand mr-2 ml-2 pt-2">
       <span>Angular</span>
     </div>
     <div class="input">
-      <my-input type="text" [formControl]="searchControl" [control]="searchControl" name="search"></my-input>
+      <my-input type="text" [formControl]="searchControl" [control]="searchControl" name="search"
+        [labelClass]="'no-margin'"></my-input>
     </div>
     <div class="btn">
       <span></span>
