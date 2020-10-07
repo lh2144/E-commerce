@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "rootDir": "./",
+      "outDir": "./dist/e-commerce",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "importHelpers": true,
+      "strict": true,
+      "sourceMap": true,
+      "noImplicitAny": true
+    }
+  }
