@@ -1,10 +1,17 @@
-@import "variable";
+@import 'variable';
 
 .wrapper {
-  background-color: $grey-light;
-  height: 100%;
+    background-color: $grey-light;
+    height: 100%;
 
-  .container {
-    width: 60%;
-  }
+    .container {
+        width: 60%;
+
+        .btn-blue {
+            background-color: $blue-dark;
+            color: white;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+    }
 }
