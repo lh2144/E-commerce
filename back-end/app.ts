@@ -5,23 +5,20 @@ import usersRouter from './routes/users';
 
 const app = express();
 const port = 8080;
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
-app.use('/', (req , res ) => {
-    res.send('Hello world');
-});
-// catch 404 and forward to error handler
-app.use((req , res , next) => {
+
+// set cors headers
+app.use((req, res , next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-
+app.use('/users', usersRouter);
 // error handler
 app.use((err: any, req: any, res: any, next: any) => {
   // set locals, only providing error in development

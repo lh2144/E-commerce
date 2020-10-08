@@ -16,5 +16,23 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
         lowercase: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: Number,
+        required: false
+    },
+    role: {
+        type: String,
+        required: false
+    },
+    loginAt: {
+        type: Date,
+        required: false
     }
 });
+export default mongoose.model('User', userSchema) ;
+
