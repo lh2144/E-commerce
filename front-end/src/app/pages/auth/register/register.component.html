@@ -26,18 +26,20 @@
                     [control]="registerForm.controls['cEmail']"
                 ></my-input>
                 <my-input
-                    type="text"
+                    [type]="inputType"
                     name="password"
                     label="Password"
                     [formControl]="registerForm.controls['password']"
                     [control]="registerForm.controls['password']"
+                    [minlength]="6"
                 ></my-input>
                 <my-input
-                    type="text"
+                    [type]="inputType"
                     name="CPassword"
                     label="Confirm Password"
                     [formControl]="registerForm.controls['cPassword']"
                     [control]="registerForm.controls['cPassword']"
+                    [minlength]="6"
                 ></my-input>
                 <p>
                     Your password should be a minimum of 6 characters long and
@@ -50,8 +52,20 @@
                     [formControl]="registerForm.controls['phone']"
                     [control]="registerForm.controls['phone']"
                 ></my-input>
-                <button type="submit" class="btn btn-blue">Continue</button>
             </form>
+            <div class="checkbox">
+              <label class="toggle" for="toggle">
+                  show passowrd
+                  <input
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                      [(ngModel)]="showPassword" (ngModelChange)="showPassword ? (inputType = 'text') : (inputType = 'password')"
+                  />
+                  <span class="slider"></span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-blue" (click)="register()">Continue</button>
         </div>
     </div>
 </div>
