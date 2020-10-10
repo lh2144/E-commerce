@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div class="slide-container">
+        <div class="slide fade">
+            <img [src]="" style="width: 100%" />
+            <div class="text-catpion">Special offer</div>
+        </div>
+
+        <div class="slide fade">
+            <img [src]="" style="width: 100%" />
+            <div class="text-caption">Special offer</div>
+        </div>
+
+        <div class="slide fade">
+            <img [src]="" style="width: 100%" />
+            <div class="text-caption">Special offer</div>
+        </div>
+        <a class="prev" (click)="onNav(-1)">&#10094;</a>
+        <a class="next" (click)="onNav(1)">&#10094;</a>
+    </div>
+    <div class="text-center">
+        <span class="dot" (click)="setCurrentSlide(1)"></span>
+        <span class="dot" (click)="setCurrentSlide(2)"></span>
+        <span class="dot" (click)="setCurrentSlide(3)"></span>
+    </div>
+</div>

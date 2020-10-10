@@ -144,7 +144,8 @@
     "no-unused-expression": true,
     "no-unused-declaration": true,
     "member-access": true,
-    "no-trailing-whitespace": true
+    "no-trailing-whitespace": true,
+    "prefer-for-of": false
   },
   "rulesDirectory": [
     "codelyzer"
