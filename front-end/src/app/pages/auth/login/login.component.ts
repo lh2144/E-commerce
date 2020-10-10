@@ -22,6 +22,6 @@ export class LoginComponent implements OnInit {
 
   public goRegister(): void {
     this.router.navigate(['register']);
-    this.loginForm.controls.email.setValue('test@');
+    // this.loginForm.controls.email.setValue('test@');
   }
 }

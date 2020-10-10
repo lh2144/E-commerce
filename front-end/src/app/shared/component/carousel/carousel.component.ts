@@ -18,7 +18,7 @@ export class CarouselComponent implements OnInit {
     }
 
     public onNav(index: number): void {
-      this.setSlider(this.active + index);
+      this.setSlider(this.active += index);
     }
 
     public setCurrentSlide(index: number): void {
@@ -33,13 +33,17 @@ export class CarouselComponent implements OnInit {
 
       for (let i = 0; i < slides.length; i++) {
         this.render.setStyle(slides[i], 'display', 'none');
+        // slides[i]['style'].display = 'none';
       }
 
       for (let i = 0; i < dots.length; i++) {
         this.render.removeClass(dots[i], 'active');
+        // dots[i].className = dots[i].className.replace(' active', '');
       }
 
       this.render.setStyle(slides[this.active - 1], 'display', 'block');
       this.render.addClass(dots[this.active - 1], 'active');
+      // slides[this.active - 1]['style'].display = 'block';
+      // dots[this.active - 1].className += ' active';
     }
 }

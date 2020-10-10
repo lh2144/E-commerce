@@ -31,7 +31,7 @@
                                 type="checkbox"
                                 name="toggle"
                                 id="toggle"
-                                [(ngModel)]="showPassword"
+                                [(ngModel)]="showPassword" (ngModelChange)="showPassword ? (inputType = 'text') : (inputType = 'password')"
                             />
                             <span class="slider"></span>
                         </label>
