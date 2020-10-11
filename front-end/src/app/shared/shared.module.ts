@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselComponent } from './component/carousel/carousel.component';
@@ -10,7 +11,8 @@ import { ValidationMessageComponent } from './component/validation-message/valid
     imports: [
         ReactiveFormsModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
     exports: [
         InputComponent,
@@ -18,7 +20,8 @@ import { ValidationMessageComponent } from './component/validation-message/valid
         HeaderComponent,
         ReactiveFormsModule,
         FormsModule,
-        CarouselComponent
+        CarouselComponent,
+        HttpClientModule
     ],
     declarations: [
       InputComponent,

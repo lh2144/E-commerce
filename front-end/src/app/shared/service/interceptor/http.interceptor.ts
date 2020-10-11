@@ -3,8 +3,8 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-@Injectable()
-export class AuthAndErrorInterceptor implements HttpInterceptor {
+@Injectable({ providedIn: 'root' })
+export class AuthInterceptor implements HttpInterceptor {
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const sessionToken = localStorage.getItem('sessionToken');
     if (sessionToken) {
