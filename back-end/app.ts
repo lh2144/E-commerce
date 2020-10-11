@@ -1,13 +1,14 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
+import bodyParser from 'body-parser';
 import usersRouter from './routes/users';
 import db from './db/mongoose';
 
 const app = express();
 const port = 8080;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// tslint:disable-next-line: deprecation
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set cors headers
@@ -17,7 +18,8 @@ app.use((req: Request, res: Response, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
-app.use('', usersRouter);
+// app.use('/test', (req, res, next) => res.send('Hello world'));
+app.use(usersRouter);
 // error handler
 app.use((err: any, req: Request, res: Response, next: any) => {
     console.log(err);
@@ -30,6 +32,7 @@ app.use((err: any, req: Request, res: Response, next: any) => {
 });
 
 db.then(() => {
+    console.log('server connected');
     app.listen(port);
 }).catch((err) => console.log(err));
 export default app;

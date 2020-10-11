@@ -42,8 +42,9 @@ const login = async (req: Request, res: Response, next) => {
     }
 };
 
-const register = async (req, res, next) => {
+const register = async (req: Request, res: Response, next) => {
     const errors = validationResult(req);
+    console.log(errors);
     if (!errors.isEmpty()) {
         const error = new Error('Validation failed');
         error['statusCode'] = 422;
@@ -54,15 +55,20 @@ const register = async (req, res, next) => {
     const name = req.body.name;
     const phone = req.body.phone;
     const password = req.body.password;
-    const hasedPw = await bcrypt.hash(password, 12);
-    if (!hasedPw) {
-        throw new Error('Internal Issue');
-    }
-    const user = await new User({email, password, phone, name}).save();
-    if (!user) {
-        throw new Error('Internal issue');
-    }
-    res.status(201).json({email, password, phone, name});
+    console.log(password);
+    bcrypt.hash(password, 12).then((hasedPw) => {
+        const user = new User({email, password, phone, name});
+        return user.save();
+    })
+    .then(ressult => {
+        res.status(201).json({email, password, phone, name});
+    })
+    .catch((err) => {
+        if (!err.statusCode) {
+            err['statusCode'] = 500;
+        }
+        next(err);
+    });
 };
 
 export { login, register };
