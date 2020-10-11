@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
           payload['email'] = this.controls['email'];
           payload['password'] = this.controls['password'];
           payload['phone'] = this.controls['phone'];
-          this.customerService.register(payload);
+          this.customerService.register(payload).subscribe();
         }
     }
 }
