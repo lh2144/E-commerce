@@ -15,6 +15,9 @@ export class CustomerService {
         return this.http.post<UserState>(this.baseUrl + 'login', body).pipe(
             map((res: UserState) => {
                 this.store.update({ ...res });
+                if (res.token) {
+                  localStorage.setItem('sessionToken', res.token);
+                }
                 return res;
             })
         );

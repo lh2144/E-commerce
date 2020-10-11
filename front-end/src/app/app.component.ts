@@ -18,7 +18,12 @@ export class AppComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.customerService.login({}).subscribe((_) => {});
-        this.currentUser.subscribe(() => { });
+        this.customerService.login({}).subscribe(
+            (_) => {},
+            (err) => {
+              localStorage.removeItem('sessionToken');
+            }
+        );
+        this.currentUser.subscribe(() => {});
     }
 }
