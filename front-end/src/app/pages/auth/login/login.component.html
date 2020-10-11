@@ -1,7 +1,7 @@
 <div class="wrapper pt-5">
     <div class="container-fluid">
         <div class="row no-gutters justify-content-around">
-            <div class="col-sm-12 col-md-5 bg-white p-5">
+            <div class="col-sm-12 col-md-5 bg-white p-5 card">
                 <form
                     class="row flex-column no-gutters"
                     [formGroup]="loginForm"
@@ -31,7 +31,7 @@
                                 type="checkbox"
                                 name="toggle"
                                 id="toggle"
-                                [(ngModel)]="showPassword"
+                                [(ngModel)]="showPassword" (ngModelChange)="showPassword ? (inputType = 'text') : (inputType = 'password')"
                             />
                             <span class="slider"></span>
                         </label>
@@ -40,11 +40,11 @@
                         <a class="text">Forgotten your password?</a>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-blue">
+                <button type="submit" class="btn btn-blue" (click)="login()">
                     Login to your account
                 </button>
             </div>
-            <div class="col-sm-12 col-md-5 bg-white p-5">
+            <div class="col-sm-12 col-md-5 bg-white p-5 card">
                 <header class="mb-4">New Customers</header>
                 <p>
                     Sign up for a Myprotein account to gain access to the lowest

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variable';
 * {
   box-sizing: border-box;
 }
@@ -6,4 +7,57 @@
 html,
 body {
   height: 100%;
+}
+
+.card {
+  box-shadow: 2px 0 0.5 $cool-grey;
+  box-shadow: 0 2px 0.5 $cool-grey;
+  border-radius: 5px;
+  border: 1px solid $cool-grey
+}
+
+.toggle {
+  position: relative;
+
+  input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  & .slider {
+    display: inline-block;
+    width: 54px;
+    height: 30px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #ededed;
+    border-width: 1px;
+    border-color: #ccc;
+    vertical-align: middle;
+    transition: 0.4s ease;
+
+    &::after {
+      position: absolute;
+      content: "";
+      height: 29px;
+      width: 24px;
+      background-color: white;
+      display: inline-block;
+      border-radius: 999px;
+      right: 27px;
+      transition: 0.4 ease;
+    }
+  }
+
+  & input:checked + .slider {
+    background-color: $blue-dark;
+  }
+
+  & input:checked + .slider::after {
+    transform: translateX(25px);
+  }
 }
