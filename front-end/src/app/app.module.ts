@@ -10,6 +10,7 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './pages/auth/register/register.component';
         AppRoutingModule,
         SharedModule,
         environment.production ? [] : AkitaNgDevtools.forRoot(),
-        AkitaNgRouterStoreModule
+        AkitaNgRouterStoreModule,
+        HttpClientModule
     ],
     providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' } }],
     bootstrap: [AppComponent]

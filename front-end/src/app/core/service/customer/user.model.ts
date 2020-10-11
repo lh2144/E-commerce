@@ -5,4 +5,5 @@ export interface UserState {
     phone?: number;
     token?: string;
     loginAt?: string;
+    role?: string;
 }
