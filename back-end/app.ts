@@ -1,7 +1,7 @@
-import express, { request, response } from 'express';
+import express, { Request, Response } from 'express';
 import path from 'path';
-import bodyParser from 'body-parser';
 import usersRouter from './routes/users';
+import db from './db/mongoose';
 
 const app = express();
 const port = 8080;
@@ -10,26 +10,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // set cors headers
-app.use((req, res , next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
+app.use((req: Request, res: Response, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
 });
-app.use('/users', usersRouter);
+app.use('', usersRouter);
 // error handler
-app.use((err: any, req: any, res: any, next: any) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((err: any, req: Request, res: Response, next: any) => {
+    console.log(err);
+    const status = err.statusCode || 500;
+    const message = err.message;
+    const data = err.data;
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(status).json({ message, data });
 });
 
-app.listen(port, () => console.log(port));
-
+db.then(() => {
+    app.listen(port);
+}).catch((err) => console.log(err));
 export default app;

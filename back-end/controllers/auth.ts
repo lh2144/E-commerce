@@ -2,9 +2,13 @@ import { validationResult } from 'express-validator/check';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
+import { Request, Response } from 'express';
 
-const login = async (req, res, next) => {
-    const token = req.header('Authorization').replace('Bearer ', '');
+const login = async (req: Request, res: Response, next) => {
+    let token = req.get('Authorization');
+    if (token) {
+        token = token.replace('Bearer ', '');
+    }
     const email = req.body.email;
     const password = req.body.password;
     if (token && !email && !password) {
@@ -13,7 +17,8 @@ const login = async (req, res, next) => {
         if (!user) {
             throw new Error('user not exist');
         }
-        res.setHeader('Autorization', 'Bearer ' + token).status(201).json({email: user['email'], name: user['name'] });
+        res.setHeader('Autorization', 'Bearer ' + token);
+        res.status(201).json({email: user['email'], name: user['name'] });
     }
     if (email && password) {
         const loadedUser = await User.findOne({ email });
@@ -46,15 +51,18 @@ const register = async (req, res, next) => {
         throw error;
     }
     const email = req.body.email;
+    const name = req.body.name;
     const phone = req.body.phone;
     const password = req.body.password;
     const hasedPw = await bcrypt.hash(password, 12);
     if (!hasedPw) {
         throw new Error('Internal Issue');
     }
-    const user = await new User({email, password, phone}).save();
+    const user = await new User({email, password, phone, name}).save();
     if (!user) {
         throw new Error('Internal issue');
     }
-    res.status(201).json({message: 'user created', userId: user._id});
+    res.status(201).json({email, password, phone, name});
 };
+
+export { login, register };
