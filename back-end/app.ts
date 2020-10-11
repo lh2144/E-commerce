@@ -1,14 +1,12 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
-import bodyParser from 'body-parser';
 import usersRouter from './routes/users';
 import db from './db/mongoose';
 
 const app = express();
 const port = 8080;
 
-// tslint:disable-next-line: deprecation
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set cors headers
@@ -16,6 +14,7 @@ app.use((req: Request, res: Response, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Content-Type', 'application/json');
     next();
 });
 // app.use('/test', (req, res, next) => res.send('Hello world'));
