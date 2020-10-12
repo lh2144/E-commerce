@@ -6,6 +6,7 @@ import { CarouselComponent } from './component/carousel/carousel.component';
 import { HeaderComponent } from './component/header/header.component';
 import { InputComponent } from './component/input/input.component';
 import { ValidationMessageComponent } from './component/validation-message/validation-message.component';
+import { ProductCardComponent } from './component/product-card/product-card.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { ValidationMessageComponent } from './component/validation-message/valid
       InputComponent,
       ValidationMessageComponent,
       HeaderComponent,
-      CarouselComponent
+      CarouselComponent,
+      ProductCardComponent
     ],
     providers: [],
 })

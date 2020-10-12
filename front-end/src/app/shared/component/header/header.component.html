@@ -1,44 +1,52 @@
 <div class="header-nav">
-  <nav class="search-group">
-    <div class="brand mr-2 ml-2 pt-2">
-      <span>Angular</span>
+    <nav class="search-group col-8 row">
+        <div class="brand mr-2 ml-2 col-6">MyShopping</div>
+        <div class="input">
+            <my-input
+                type="text"
+                [formControl]="searchControl"
+                [control]="searchControl"
+                name="search"
+                [labelClass]="'no-margin'"
+            ></my-input>
+        </div>
+        <div class="btn">
+            <span></span>
+        </div>
+    </nav>
+    <div class="nav-right col-4 row">
+        <div class="account dropdown col-6">
+            <button class="btn dropbtn">
+                <span></span>
+                <span>Account</span>
+            </button>
+            <div class="drop-content">
+                <div class="account-name">Hello, hang</div>
+                <ul>
+                    <li><a>Your account</a></li>
+                    <li><a>Your order</a></li>
+                    <li><a>Your refer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="cart dropdown col-6">
+            <button class="btn dropbtn">
+                <span></span>
+                <span>Cart</span>
+            </button>
+            <div class="drop-content">
+                <ul>
+                    <li>item1</li>
+                    <li>item2</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dropdown-overlay"></div>
     </div>
-    <div class="input">
-      <my-input type="text" [formControl]="searchControl" [control]="searchControl" name="search"
-        [labelClass]="'no-margin'"></my-input>
-    </div>
-    <div class="btn">
-      <span></span>
-    </div>
-  </nav>
-  <div class="nav-right">
-    <div class="account dropdown">
-      <button class="btn dropbtn">
-        <span></span>
-        <span>Account</span>
-      </button>
-      <div class="drop-content">
-        <div class="account-name">Hello, hang</div>
-        <ul>
-          <li><a>Your account</a></li>
-          <li><a>Your order</a></li>
-          <li><a>Your refer</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="cart dropdown">
-      <button class="btn dropbtn">
-        <span></span>
-        <span>Cart</span>
-      </button>
-      <div class="drop-content">
-        <ul>
-          <li>item1</li>
-          <li>item2</li>
-        </ul>
-      </div>
-    </div>
-    <div class="dropdown-overlay">
-    </div>
-  </div>
+</div>
+<div class="dep-nav row pl-4 pr-4">
+    <div class="item">Nutrition</div>
+    <div class="item">Clothing</div>
+    <div class="item mr-2">Dietary Needs</div>
+    <div class="item">Goal Selector</div>
 </div>
