@@ -7,6 +7,7 @@
 
     .search-group {
         display: flex;
+        flex-wrap: nowrap;
         margin-right: auto;
         .brand {
             font-size: 24px;
@@ -22,7 +23,8 @@
         display: flex;
 
         span {
-            color: white;
+            color: black;
+            font-size: 22px;
         }
         .dropdown {
             .drop-content {
@@ -51,4 +53,16 @@
             }
         }
     }
+}
+
+.dep-nav {
+  background-color: $blue-dark;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  .item {
+    min-width: 96px;
+    max-height: 40px;
+    padding: 6px;
+  }
 }
