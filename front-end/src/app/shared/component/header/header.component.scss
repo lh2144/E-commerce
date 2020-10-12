@@ -22,36 +22,33 @@
         display: flex;
 
         span {
-            color: black;
-            font-size: 22px;
+            color: white;
         }
+        .dropdown {
+            .drop-content {
+                position: absolute;
+                display: none;
+                z-index: 6;
 
-        .drop-content {
-            display: none;
-            z-index: 6;
+                ul {
+                  list-style: none;
+                }
+            }
+
+            & .dropbtn:focus + .drop-content {
+              display: block;
+            }
+
+            .dropdown-overlay {
+                position: fixed;
+                display: none;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.3);
+                z-index: 5;
+            }
         }
-
-        .dropdown-overlay {
-            position: fixed;
-            display: none;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 5;
-        }
-    }
-}
-
-.dep-nav {
-    background-color: $blue-dark;
-    font-size: 18px;
-    font-weight: 400;
-    color: white;
-    .item {
-      min-width: 96px;
-      height: 40px;
-      padding: 6px;
     }
 }
