@@ -1,0 +1,55 @@
+<div class="product-wrapper pl-5 pr-5 mt-5">
+    <div class="container-fluid no-gutters">
+        <div class="row no-gutters flex-row product">
+            <div class="col-7 product-img">
+                <div class="img" style="width: 445px; height: 445px;">
+                    <img src="" alt="" style="width: 445px;height: 445px;"/>
+                </div>
+            </div>
+            <div class="col-5 row flex-column product-main mr-auto">
+                <div class="product-name">
+                  whey protein
+                </div>
+                <div class="product-preview">
+                  One of the purest whey supplements available, with 90% protein content
+                </div>
+                <div class="divider"></div>
+                <div class="prodcut-price mt-5">
+                  $15.99
+                </div>
+                <div class="divider"></div>
+                <div class="product-buy row mt-5">
+                  <div class="col-6 quantity row flex-row no-gutters">
+                    <div class="minus" (click)="onQuantityChange(-1)">
+                      -
+                    </div>
+                    <div class="input">
+                      <input type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
+                    </div>
+                    <div class="plus" (click)="onQuantityChange(1)">
+                      +
+                    </div>
+                  </div>
+                  <div class="col-6 check-btn text-right">
+                    <button type="button" class="btn btn-blue">Buy Now</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row flex-row comment no-gutters">
+          <div class="col-5 comment-left">
+            <div>
+              <header>
+                Comments
+              </header>
+            </div>
+          </div>
+          <div class="col-7 comment-main">
+            <ul>
+              <li>test</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+</div>
