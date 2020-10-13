@@ -11,12 +11,16 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        ProductDetailComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
