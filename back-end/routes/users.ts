@@ -8,8 +8,8 @@ const router = express.Router();
 router.post('/login', login);
 router.post('/register', [
         body('email')
-            // .isEmail()
-            // .withMessage('Please enter a valid email')
+            .isEmail()
+            .withMessage('Please enter a valid email')
             .custom((value, { req }) => {
                 return User.findOne({email: value}).then(userDoc => {
                     if (userDoc) {
