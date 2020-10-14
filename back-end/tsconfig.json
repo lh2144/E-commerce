@@ -9,6 +9,6 @@
       "importHelpers": true,
       "strict": true,
       "sourceMap": true,
-      "noImplicitAny": true
+      "noImplicitAny": false
     }
   }
