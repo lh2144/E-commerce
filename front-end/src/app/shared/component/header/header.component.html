@@ -15,11 +15,11 @@
         </div>
     </nav>
     <div class="nav-right col-4 row">
-        <div class="account dropdown col-6">
+        <div class="account dropdown col-6" (click)="ondropDownClick($event)">
             <button class="btn dropbtn">
                 <span>Account</span>
             </button>
-            <div class="drop-content card">
+            <div class="drop-content card" [ngClass]="{'show': showDropDown}">
                 <div class="row no-gutters log"  *ngIf="userQuery.currentUser |
                 async;else register">
                   <div class="account-name mr-auto">Hello {{userQuery.currentUser | async}}</div>
@@ -27,8 +27,8 @@
                 </div>
                 <ng-template #register>
                   <div class="row d-flex flex-column no-gutters log">
-                    <button class="log-in btn btn-blue" routerLink="/login">Log In</button>
-                    <button class="register btn btn-blue" routerLink="/register">Register</button>
+                    <button class="log-in btn btn-blue" [routerLink]="'/login'">Log In</button>
+                    <button class="register btn btn-blue" [routerLink]="'/register'">Register</button>
                   </div>
                 </ng-template>
                 <ul>
