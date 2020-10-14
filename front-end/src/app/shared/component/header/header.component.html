@@ -17,13 +17,22 @@
     <div class="nav-right col-4 row">
         <div class="account dropdown col-6">
             <button class="btn dropbtn">
-                <span></span>
                 <span>Account</span>
             </button>
-            <div class="drop-content">
-                <div class="account-name">Hello, hang</div>
+            <div class="drop-content card">
+                <div class="row no-gutters log"  *ngIf="userQuery.currentUser |
+                async;else register">
+                  <div class="account-name mr-auto">Hello {{userQuery.currentUser | async}}</div>
+                  <div class="log-out" (click)="logout()" *ngIf="userQuery.currentUser | async">Log out</div>
+                </div>
+                <ng-template #register>
+                  <div class="row d-flex flex-column no-gutters log">
+                    <button class="log-in btn btn-blue" routerLink="/login">Log In</button>
+                    <button class="register btn btn-blue" routerLink="/register">Register</button>
+                  </div>
+                </ng-template>
                 <ul>
-                    <li><a>Your account</a></li>
+                    <li *ngIf="userQuery.currentUser | async"><a>Your account</a></li>
                     <li><a>Your order</a></li>
                     <li><a>Your refer</a></li>
                 </ul>
@@ -34,7 +43,7 @@
                 <span></span>
                 <span>Cart</span>
             </button>
-            <div class="drop-content">
+            <div class="drop-content card cart-item">
                 <ul>
                     <li>item1</li>
                     <li>item2</li>

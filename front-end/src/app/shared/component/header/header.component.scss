@@ -29,16 +29,53 @@
         .dropdown {
             .drop-content {
                 position: absolute;
-                display: none;
+                visibility: hidden;
+                background-color: white;
+                font-size: 18px;
+                color: black;
+                min-width: 250px;
                 z-index: 6;
+                &.cart-item {
+                  top: 100%;
+                  left: -50%;
+                }
+                & > .log {
+                    background-color: $light-grey;
+                    padding: 12px;
+                    font-weight: 500;
+                }
 
                 ul {
-                  list-style: none;
+                    list-style: none;
+                    padding-left: 0;
+                    & li {
+                        margin-top: 8px;
+                        padding: 12px;
+                        cursor: pointer;
+                    }
+                }
+                .log {
+                    flex-wrap: nowrap;
+                    .log-in {
+                        cursor: pointer;
+                        text-align: center;
+                        flex-grow: 1;
+                    }
+                    .log-out {
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+                    .btn-blue {
+                        background-color: $blue-dark;
+                        color: white;
+                        margin-top: 8px;
+                        margin-bottom: 8px;
+                    }
                 }
             }
 
             & .dropbtn:focus + .drop-content {
-              display: block;
+                visibility: visible;
             }
 
             .dropdown-overlay {
@@ -56,13 +93,13 @@
 }
 
 .dep-nav {
-  background-color: $blue-dark;
-  font-size: 18px;
-  font-weight: 400;
-  color: white;
-  .item {
-    min-width: 96px;
-    max-height: 40px;
-    padding: 6px;
-  }
+    background-color: $blue-dark;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    .item {
+        min-width: 96px;
+        max-height: 40px;
+        padding: 6px;
+    }
 }
