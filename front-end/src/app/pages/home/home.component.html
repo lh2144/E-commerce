@@ -1,9 +1,9 @@
 <my-header></my-header>
 <my-carousel></my-carousel>
 <main class="container">
-    <div class="row">
+    <div class="row no-gutters">
       <ng-container *ngFor="let product of allProducts | async">
-        <div class="product-item">
+        <div class="product-item card">
           <my-product-card [product]="product"></my-product-card>
         </div>
       </ng-container>
