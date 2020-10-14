@@ -1,2 +1,2 @@
-export * from './customer/customer.service';
-export * from './product/product.service';
+export * from './customer';
+export * from './product';
