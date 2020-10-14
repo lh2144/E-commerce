@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
         InputComponent,
         ValidationMessageComponent,
         HeaderComponent,
+        ProductCardComponent,
         ReactiveFormsModule,
         FormsModule,
         CarouselComponent,

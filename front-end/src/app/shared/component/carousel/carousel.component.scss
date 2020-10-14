@@ -4,17 +4,18 @@
     margin: auto;
 
     .slide {
+        position: relative;
         display: none;
         max-height: 350px;
         width: 100%;
 
-        img {
+        .img {
           margin-left: auto;
           margin-right: auto;
           max-width: 100%;
           max-height: 100%;
           display: block;
-          object-fit: scale-down;
+          object-fit: cover;
         }
     }
 

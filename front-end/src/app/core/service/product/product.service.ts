@@ -13,9 +13,9 @@ export class ProductService {
     ) {}
 
     public getAllProduct(): Observable<ProductState[]> {
-      return this.http.get(environment.base + 'products').pipe(map((res: []) => {
-          this.productStore.set(res);
-          return res;
+      return this.http.get(environment.base + 'products').pipe(map((res) => {
+          this.productStore.set(res['data']);
+          return res['data'];
       }));
     }
 }
