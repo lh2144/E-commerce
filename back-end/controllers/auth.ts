@@ -38,7 +38,12 @@ const login = async (req: Request, res: Response, next) => {
             email: loadedUser['email'],
             name: loadedUser['name']
         }, 'newNodeProject', { expiresIn: '1h'});
-        res.status(201).json({ token });
+        res.status(201).json({
+            token,
+            id: loadedUser['_id'],
+            email: loadedUser['email'],
+            name: loadedUser['name']
+        });
     }
 };
 
