@@ -8,9 +8,8 @@ const createComment = async (req: Request, res: Response, next) => {
         const error = new Error('User should login to comment');
         error['statusCode'] = 422;
     }
-    const {title, nickName, detail, productId, rating} = req.body;
-    const comment = new Comment({title, nickName, detail, rating, productId: new ObjectId(productId)
-    });
+    const { title, nickName, detail, productId, rating } = req.body;
+    const comment = new Comment({ title, nickName, detail, rating, productId: new ObjectId(productId) });
     try {
         const res = await comment.save();
     } catch (err) {
@@ -19,5 +18,7 @@ const createComment = async (req: Request, res: Response, next) => {
             next(err);
         }
     }
-    res.status(200).json({...res});
+    res.status(200).json({ ...res });
 };
+
+export { createComment };

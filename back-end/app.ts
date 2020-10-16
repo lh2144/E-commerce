@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 import usersRouter from './routes/users';
 import productRouter from './routes/product';
+import commentRouter from './routes/comment';
 import db from './db/mongoose';
 
 const app = express();
@@ -21,6 +22,7 @@ app.use((req: Request, res: Response, next) => {
 // app.use('/test', (req, res, next) => res.send('Hello world'));
 app.use(usersRouter);
 app.use(productRouter);
+app.use(commentRouter);
 // error handler
 app.use((err: any, req: Request, res: Response, next: any) => {
     console.log(err);
