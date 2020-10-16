@@ -7,22 +7,26 @@ import { HeaderComponent } from './component/header/header.component';
 import { InputComponent } from './component/input/input.component';
 import { ValidationMessageComponent } from './component/validation-message/validation-message.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         ReactiveFormsModule,
         CommonModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterModule
     ],
     exports: [
         InputComponent,
         ValidationMessageComponent,
         HeaderComponent,
+        ProductCardComponent,
         ReactiveFormsModule,
         FormsModule,
         CarouselComponent,
-        HttpClientModule
+        HttpClientModule,
+        RouterModule
     ],
     declarations: [
       InputComponent,

@@ -3,7 +3,13 @@
 .wrapper {
   background-color: $grey-light;
   height: 100%;
-
+  .container-fluid {
+    padding-left: 100px;
+    padding-right: 100px;
+    .row {
+      justify-content: space-around;
+    }
+  }
   header {
     font-size: 24px;
     font-weight: 600;

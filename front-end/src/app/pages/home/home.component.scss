@@ -1,0 +1,13 @@
+@import 'variable';
+main {
+    margin-top: 24px;
+    .product-item {
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-left: 16px;
+        margin-right: 16px;
+        flex-basis: calc(25% - 32px);
+        margin-bottom: 24px;
+    }
+}
+

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/core/service/product/product.model';
+import { ProductQuery } from 'service';
+import { ProductState } from 'service';
 
 @Component({
   selector: 'my-product-card',
@@ -7,8 +8,8 @@ import { Product } from 'src/app/core/service/product/product.model';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() public product: Product;
-  public constructor() { }
+  @Input() public product: ProductState;
+  public constructor(public productQuery: ProductQuery ) { }
 
   public ngOnInit(): void {
   }

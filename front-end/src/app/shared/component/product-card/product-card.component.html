@@ -1,16 +1,15 @@
 <div class="product-wrapper">
-  <div class="card container no-gutters d-flex flex-column">
-    <div class="row">
+  <div class="container no-gutters">
+    <div class="row d-flex flex-column">
       <div class="img">
-        <img>
+        <img [src]="product?.imgUrl">
       </div>
-      <div class="name">
+      <div class="name mt-2 pl-2 text-center">
         {{product?.productName}}
       </div>
-      <div class="price">
+      <div class="price mt-2 mb-2 pl-2 text-center">
         {{product?.price}}
       </div>
     </div>
-
   </div>
 </div>

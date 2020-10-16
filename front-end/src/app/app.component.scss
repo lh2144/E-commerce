@@ -1,0 +1,13 @@
+@import 'variable';
+
+.dep-nav {
+  background-color: $blue-dark;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  .item {
+      min-width: 96px;
+      max-height: 40px;
+      padding: 6px;
+  }
+}
