@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ProductQuery, ProductState } from 'service';
 
 @Component({
     selector: 'my-product-detail',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
     public quantity: number = 1;
-    public constructor() {}
+    public activeProduct: ProductState;
+    public constructor(public productQuery: ProductQuery, public route: ActivatedRoute) {}
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+      this.route.paramMap.subscribe(param => {
+        const id = param.get('id');
+        this.productQuery.selectEntity(id).subscribe(product => {
+          this.activeProduct = product;
+        });
+      });
+    }
 
     public onQuantityChange(count: number): void {
       this.quantity += count;

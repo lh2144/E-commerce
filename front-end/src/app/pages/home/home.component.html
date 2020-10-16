@@ -1,15 +1,10 @@
-<div class="dep-nav row pl-4 pr-4">
-  <div class="item">Nutrition</div>
-  <div class="item">Clothing</div>
-  <div class="item mr-2">Dietary Needs</div>
-  <div class="item">Goal Selector</div>
-</div>
+
 
 <my-carousel></my-carousel>
 <main class="container">
     <div class="row no-gutters">
       <ng-container *ngFor="let product of allProducts | async">
-        <div class="product-item card">
+        <div class="product-item card" (click)="goToDetail(product)">
           <my-product-card [product]="product"></my-product-card>
         </div>
       </ng-container>

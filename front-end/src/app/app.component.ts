@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { UserQuery } from './core/service/customer/customer.query';
 import { CustomerService } from './core/service/customer/customer.service';
 import { UserState } from './core/service/customer/user.model';
+import { ProductService } from './core/service/product';
 
 @Component({
     selector: 'my-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit {
 
     public constructor(
         public customerService: CustomerService,
-        public userQuery: UserQuery
+        public userQuery: UserQuery,
+        public productService: ProductService
     ) {}
 
     public ngOnInit(): void {
@@ -25,5 +27,6 @@ export class AppComponent implements OnInit {
             }
         );
         this.currentUser.subscribe(() => {});
+        this.productService.getAllProduct().subscribe();
     }
 }

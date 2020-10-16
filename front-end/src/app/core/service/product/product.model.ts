@@ -5,5 +5,7 @@ export interface Product {
     imagUrl: string;
     price: number;
     inventory: number;
-    variants?: any;
+    // variants?: any;
+    overview?: string;
+    preview?: string;
 }
