@@ -18,13 +18,9 @@ const postProduct = async (req: Request, res: Response, next) => {
         throw error;
     }
     try {
-        const imgUrl = req.body.imgUrl;
-        const productName = req.body.productName;
-        const preview = req.body.preview;
-        const overview = req.body.overview;
-        const price = req.body.price;
+        const { imgUrl, productName, preview, overview, price } = req.body;
         const product = new Product({ imgUrl, productName, preview, overview, price });
-        await product.save();
+        const response = await product.save();
         res.status(200).json({ imgUrl, productName, preview, overview });
     } catch (err) {
         if (!err['statusCode']) {

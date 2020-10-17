@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { commentSchema } from './comment';
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
@@ -22,7 +23,10 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    inventory: Number
+    inventory: Number,
+    reviews: [commentSchema]
 });
-
+// productSchema.path('reviews').validate(function(v) {
+//     if (
+// });
 export default mongoose.model('Product', productSchema);
