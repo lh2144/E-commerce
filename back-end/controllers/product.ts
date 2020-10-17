@@ -41,7 +41,8 @@ const getProducts = async (req: Request, res: Response, next) => {
             const overview = item['overview'];
             const imgUrl = item['imgUrl'];
             const price = item['price'];
-            result.push({productName, id, preview, overview, imgUrl, price});
+            const reviews = item['reviews'];
+            result.push({productName, id, preview, overview, imgUrl, price, reviews});
         }
         res.status(200).json({ data: [...result] });
     } catch (error) {
