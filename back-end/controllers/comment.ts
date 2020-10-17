@@ -26,6 +26,7 @@ const createComment = async (req: Request, res: Response, next) => {
                 product['reviews'].push(response);
             }
         }
+        await product?.save();
 
         res.status(200).json({
             title: response['title'],
