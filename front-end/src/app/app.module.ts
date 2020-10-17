@@ -13,6 +13,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { HomeComponent } from './pages/home/home.component';
         AppRoutingModule,
         SharedModule,
         environment.production ? [] : AkitaNgDevtools.forRoot(),
-        AkitaNgRouterStoreModule
+        AkitaNgRouterStoreModule,
+        NgbModule
     ],
     providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' } }],
     bootstrap: [AppComponent]

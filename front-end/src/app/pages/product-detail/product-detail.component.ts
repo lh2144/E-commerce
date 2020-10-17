@@ -11,6 +11,7 @@ import { ProductQuery, ProductState } from 'service';
 export class ProductDetailComponent implements OnInit {
     public quantity: number = 1;
     public activeProduct: ProductState;
+    public currentRate: number = 2.5;
     public constructor(public productQuery: ProductQuery, public route: ActivatedRoute) {}
 
     public ngOnInit(): void {
