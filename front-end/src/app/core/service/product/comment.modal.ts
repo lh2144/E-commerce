@@ -1,9 +1,9 @@
 export interface Comment {
     id: string;
     productId: string;
-    userId: string;
+    nickName: string;
     detail: string;
-    rate: number;
-    preview: string;
+    rating: number;
+    title: string;
     commentAt: string;
 }

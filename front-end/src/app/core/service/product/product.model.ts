@@ -8,4 +8,5 @@ export interface Product {
     // variants?: any;
     overview?: string;
     preview?: string;
+    reviews?: Comment[];
 }
