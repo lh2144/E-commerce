@@ -5,5 +5,5 @@ export interface Comment {
     detail: string;
     rating: number;
     title: string;
-    createAt: string;
+    createdAt: string;
 }

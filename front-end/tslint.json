@@ -146,7 +146,8 @@
     "member-access": true,
     "no-trailing-whitespace": true,
     "prefer-for-of": false,
-    "no-string-literal":false
+    "no-string-literal":false,
+    "no-bitwise": false
   },
   "rulesDirectory": [
     "codelyzer"

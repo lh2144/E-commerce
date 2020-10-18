@@ -1,18 +1,20 @@
 <div class="comment-wrapper">
-  <div class="title">
+  <div class="title mb-5">
     <span>{{ comment?.title}}</span>
-    <span class="star">&#9733;</span>
+    <ng-container *ngFor="let star of starCount">
+      <span class="star">&#9733;</span>
+    </ng-container>
   </div>
-  <div class="detail">
+  <div class="detail mt-5">
     {{ comment?.detail}}
   </div>
-  <div class="date">
-    {{ comment?.createAt | date: 'shortDate'}} by {{ comment?.nickName}}
+  <div class="date mt-3">
+    {{ comment?.createdAt | date: 'shortDate'}} by {{ comment?.nickName}}
   </div>
-  <div class="footer">
+  <div class="footer mt-5">
     Was this helpful?
-    <div>
-      <button class="btn btn-grey">Yes</button>
+    <div class="mt-2">
+      <button class="btn btn-grey mr-2">Yes</button>
       <button class="btn btn-grey">No</button>
     </div>
   </div>

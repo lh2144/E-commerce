@@ -1,72 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variable';
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 .card {
-  box-shadow: 2px 0 0.5 $cool-grey;
-  box-shadow: 0 2px 0.5 $cool-grey;
-  border-radius: 5px;
-  border: 1px solid $cool-grey
+    box-shadow: 2px 0 0.5 $cool-grey;
+    box-shadow: 0 2px 0.5 $cool-grey;
+    border-radius: 5px;
+    border: 1px solid $cool-grey;
 }
 
 .toggle {
-  position: relative;
+    position: relative;
 
-  input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    left: 0;
-    cursor: pointer;
-  }
-
-  & .slider {
-    display: inline-block;
-    width: 54px;
-    height: 30px;
-    border-radius: 999px;
-    overflow: hidden;
-    background: #ededed;
-    border-width: 1px;
-    border-color: #ccc;
-    vertical-align: middle;
-    transition: 0.4s ease;
-
-    &::after {
-      position: absolute;
-      content: "";
-      height: 29px;
-      width: 24px;
-      background-color: white;
-      display: inline-block;
-      border-radius: 999px;
-      right: 27px;
-      transition: 0.4 ease;
+    input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        left: 0;
+        cursor: pointer;
     }
-  }
 
-  & input:checked + .slider {
+    & .slider {
+        display: inline-block;
+        width: 54px;
+        height: 30px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: #ededed;
+        border-width: 1px;
+        border-color: #ccc;
+        vertical-align: middle;
+        transition: 0.4s ease;
+
+        &::after {
+            position: absolute;
+            content: '';
+            height: 29px;
+            width: 24px;
+            background-color: white;
+            display: inline-block;
+            border-radius: 999px;
+            right: 27px;
+            transition: 0.4 ease;
+        }
+    }
+
+    & input:checked + .slider {
+        background-color: $blue-dark;
+    }
+
+    & input:checked + .slider::after {
+        transform: translateX(25px);
+    }
+}
+.btn.btn-blue {
     background-color: $blue-dark;
-  }
-
-  & input:checked + .slider::after {
-    transform: translateX(25px);
-  }
-}
-.btn-blue {
-  background-color: $blue-dark;
-  color: white;
-  margin-top: 16px;
-  margin-bottom: 16px;
+    color: white;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+.btn.btn-grey {
+    border-width: 2px;
+    border-style: solid;
+    background-color: $grey-light;
+    box-shadow: 0 2px 1px 0 #ccc;
+    min-width: 50px;
+}
+

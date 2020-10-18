@@ -3,7 +3,7 @@
         <div class="row no-gutters flex-row product">
             <div class="col-7 product-img">
                 <div class="img">
-                    <img [src]="activeProduct?.imgUrl" alt="unknow" width="500" height="500"/>
+                    <img [src]="activeProduct?.imgUrl" alt="unknow" width="600" height="500"/>
                 </div>
             </div>
             <div class="col-5 row no-gutters flex-column product-main mr-auto">
@@ -76,7 +76,7 @@
             <div class="divider mt-5 mb-5"></div>
             <div class="mt-5">
               <div *ngFor="let comment of comments">
-                <my-comment [comment]="comments"></my-comment>
+                <my-comment [comment]="comment"></my-comment>
                 <div class="divider mt-5 mb-5"></div>
               </div>
             </div>

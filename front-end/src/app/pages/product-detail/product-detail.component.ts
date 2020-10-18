@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProductQuery, ProductState } from 'service';
+import { Product, ProductQuery, ProductState } from 'service';
 
 @Component({
     selector: 'my-product-detail',
@@ -10,16 +10,18 @@ import { ProductQuery, ProductState } from 'service';
 })
 export class ProductDetailComponent implements OnInit {
     public quantity: number = 1;
-    public activeProduct: ProductState;
+    public activeProduct: Product;
     public currentRate: number = 2.5;
     public comments: Comment[];
+    public productId: string;
     public constructor(public productQuery: ProductQuery, public route: ActivatedRoute) {}
 
     public ngOnInit(): void {
       this.route.paramMap.subscribe(param => {
-        const id = param.get('id');
-        this.productQuery.selectEntity(id).subscribe(product => {
+        this.productId = param.get('id');
+        this.productQuery.selectEntity(this.productId).subscribe((product: Product) => {
           this.activeProduct = product;
+          this.comments = this.activeProduct?.reviews;
         });
       });
     }
