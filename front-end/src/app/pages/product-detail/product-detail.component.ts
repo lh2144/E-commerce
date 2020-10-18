@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Product, ProductQuery, ProductState } from 'service';
+import { Product, Comment, ProductQuery, ProductState } from 'service';
 
 @Component({
     selector: 'my-product-detail',
@@ -11,22 +11,47 @@ import { Product, ProductQuery, ProductState } from 'service';
 export class ProductDetailComponent implements OnInit {
     public quantity: number = 1;
     public activeProduct: Product;
-    public currentRate: number = 2.5;
+    public currentRate: number = 0;
     public comments: Comment[];
     public productId: string;
-    public constructor(public productQuery: ProductQuery, public route: ActivatedRoute) {}
+    public starWMap: any = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+    };
+    public max: number = 0;
+    public total: number = 0;
+    public constructor(
+        public productQuery: ProductQuery,
+        public route: ActivatedRoute
+    ) {}
 
     public ngOnInit(): void {
-      this.route.paramMap.subscribe(param => {
-        this.productId = param.get('id');
-        this.productQuery.selectEntity(this.productId).subscribe((product: Product) => {
-          this.activeProduct = product;
-          this.comments = this.activeProduct?.reviews;
+        this.route.paramMap.subscribe((param) => {
+            this.productId = param.get('id');
+            this.productQuery
+                .selectEntity(this.productId)
+                .subscribe((product: Product) => {
+                    this.activeProduct = product;
+                    this.comments = this.activeProduct?.reviews;
+                    this.comments?.forEach((review: Comment) => {
+                        this.total++;
+                        this.currentRate += (+review.rating);
+                        this.starWMap[review.rating]++;
+                    });
+                    for (const index in this.starWMap) {
+                        if (this.max < this.starWMap[index]) {
+                            this.max = this.starWMap[index];
+                        }
+                    }
+                    this.currentRate = this.currentRate / this.comments?.length;
+                });
         });
-      });
     }
 
     public onQuantityChange(count: number): void {
-      this.quantity += count;
+        this.quantity += count;
     }
 }

@@ -1,3 +1,4 @@
+import { Comment } from 'service';
 export interface Product {
     id: string;
     productName: string;
