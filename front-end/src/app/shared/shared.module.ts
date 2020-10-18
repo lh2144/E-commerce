@@ -8,6 +8,7 @@ import { InputComponent } from './component/input/input.component';
 import { ValidationMessageComponent } from './component/validation-message/validation-message.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { RouterModule } from '@angular/router';
+import { CommentComponent } from './component/comment/comment.component';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { RouterModule } from '@angular/router';
       ValidationMessageComponent,
       HeaderComponent,
       CarouselComponent,
-      ProductCardComponent
+      ProductCardComponent,
+      CommentComponent
     ],
     providers: [],
 })
