@@ -77,19 +77,41 @@
         }
 
         .rating-line {
-          display: inline-block;
-          & + span {
             display: inline-block;
-            font-size: 1.5rem;
-            font-weight: 400;
-            padding-left: 2rem;
-          }
+            & + span {
+                display: inline-block;
+                font-size: 1.5rem;
+                font-weight: 400;
+                padding-left: 2rem;
+            }
         }
 
-    }
-
-    ul {
-        list-style: none;
+        .board-container {
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding-left: 50px;
+            padding-right: 50px;
+            margin-right: 50px;
+            .board-item {
+                height: 40px;
+                span {
+                    display: inline-block;
+                    color: $blue-dark;
+                    padding-left: 8px;
+                    font-size: 1.5rem;
+                    vertical-align: initial;
+                }
+                .graph {
+                    background-color: $blue-dark;
+                    height: 100%;
+                    margin-left: 12px;
+                    vertical-align: middle;
+                }
+                .total {
+                  color: black;
+                }
+            }
+        }
     }
 }
 
@@ -102,4 +124,12 @@
 
 button {
     min-width: 125px;
+}
+
+ul {
+    list-style: none;
+}
+// base width 80%
+@mixin view-width($v) {
+    width: calc($v - 3rem - 12px);
 }

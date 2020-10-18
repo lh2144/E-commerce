@@ -55,6 +55,16 @@
                 <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
               </div>
               <span>{{ currentRate }}</span>
+              <div class="mt-2">2 Reviews</div>
+              <div class="rating-board mt-2">
+                <ul class="board-container">
+                  <li class="board-item mt-2">5<span>&#9733;</span><span class="graph" [style.width.%]="80"></span><span class="total">10</span></li>
+                  <li class="board-item mt-2">4<span>&#9733;</span><span class="graph"></span><span class="total">12</span></li>
+                  <li class="board-item mt-2">3<span>&#9733;</span><span class="graph"></span><span class="total">12</span></li>
+                  <li class="board-item mt-2">2<span>&#9733;</span><span class="graph"></span><span class="total">12</span></li>
+                  <li class="board-item mt-2">1<span>&#9733;</span><span class="graph"></span><span class="total">12</span></li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="col-7 comment-main">
