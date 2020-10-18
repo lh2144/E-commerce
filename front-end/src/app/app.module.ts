@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PostCommentComponent } from './pages/post-comment/post-comment.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         LoginComponent,
         RegisterComponent,
         ProductDetailComponent,
-        HomeComponent
+        HomeComponent,
+        PostCommentComponent
     ],
     imports: [
         BrowserModule,

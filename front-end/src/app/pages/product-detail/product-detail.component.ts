@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product, Comment, ProductQuery, ProductState } from 'service';
 
@@ -25,7 +25,8 @@ export class ProductDetailComponent implements OnInit {
     public total: number = 0;
     public constructor(
         public productQuery: ProductQuery,
-        public route: ActivatedRoute
+        public route: ActivatedRoute,
+        public router: Router
     ) {}
 
     public ngOnInit(): void {
@@ -53,5 +54,9 @@ export class ProductDetailComponent implements OnInit {
 
     public onQuantityChange(count: number): void {
         this.quantity += count;
+    }
+
+    public createComment(): void {
+      this.router.navigate(['postComment', this.productId]);
     }
 }
