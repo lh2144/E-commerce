@@ -74,9 +74,12 @@
             <div class="divider mt-5 mb-5"></div>
             <header>Top Customer Reviews</header>
             <div class="divider mt-5 mb-5"></div>
-            <ul class="mt-5">
-              <li>test</li>
-            </ul>
+            <div class="mt-5">
+              <div *ngFor="let comment of comments">
+                <my-comment [comment]="comments"></my-comment>
+                <div class="divider mt-5 mb-5"></div>
+              </div>
+            </div>
           </div>
         </div>
     </div>

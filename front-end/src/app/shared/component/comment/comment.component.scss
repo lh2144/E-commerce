@@ -1,0 +1,12 @@
+@import 'variable';
+
+.comment-wrapper {
+  span {
+    display: inline-block;
+  }
+
+  span.star {
+    color: $blue-dark;
+    font-size: 1.2rem;
+  }
+}

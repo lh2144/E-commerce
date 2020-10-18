@@ -12,6 +12,7 @@ export class ProductDetailComponent implements OnInit {
     public quantity: number = 1;
     public activeProduct: ProductState;
     public currentRate: number = 2.5;
+    public comments: Comment[];
     public constructor(public productQuery: ProductQuery, public route: ActivatedRoute) {}
 
     public ngOnInit(): void {

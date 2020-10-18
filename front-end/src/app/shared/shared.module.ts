@@ -22,6 +22,7 @@ import { CommentComponent } from './component/comment/comment.component';
         InputComponent,
         ValidationMessageComponent,
         HeaderComponent,
+        CommentComponent,
         ProductCardComponent,
         ReactiveFormsModule,
         FormsModule,
