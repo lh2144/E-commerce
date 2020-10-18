@@ -4,15 +4,17 @@
   span {
     display: inline-block;
   }
-  .title > span {
+  .title:first-child  {
     font-weight: 500;
     font-size: 1.5rem;
     margin-right: 12px;
+    display: inline-block;
   }
 
   span.star {
     color: $blue-dark;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-right: 2px;
   }
   .date {
     font-weight: 500;
