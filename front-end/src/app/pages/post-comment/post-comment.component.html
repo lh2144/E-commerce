@@ -1,1 +1,31 @@
-<p>post-comment works!</p>
+<div class="container post-comment mt-5">
+  <header>Submit a review</header>
+  <div class="product-title pl-5">Whey protein</div>
+  <div class="container mt-4 pt-3 pb-4">
+    <div class="row">
+      <div class="col-5">
+        <div>Write your review</div>
+      </div>
+      <div class="col-7 pl-5 pr-5">
+        <form [formGroup]="commentForm">
+          <div class="row no-gutters flex-column">
+            <div class="rating"></div>
+            <div class="nickName">
+              <my-input type="text" label="nickname" name="nickName" [formControl]="commentForm.controls['nickName']" [control]="commentForm.controls['nickName']"></my-input>
+            </div>
+            <div class="title">
+              <my-input type="text" label="title" name="title" [formControl]="commentForm.controls['title']" [control]="commentForm.controls['title']"></my-input>
+            </div>
+            <div class="detail">
+              <label for="detail">Your Reviews</label>
+              <textarea id="detail" [formControl]="commentForm.controls['detail']" class="form-control"></textarea>
+            </div>
+            <div>
+              <button class="btn btn-blue" type="button">Sumbit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
