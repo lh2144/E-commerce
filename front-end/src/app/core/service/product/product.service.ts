@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductState, ProductStore } from './product.store';
-
+import { Comment } from 'service';
 @Injectable({ providedIn: 'root' })
 export class ProductService {
     public constructor(
@@ -16,6 +16,15 @@ export class ProductService {
       return this.http.get(environment.base + 'products').pipe(map((res) => {
           this.productStore.set(res['data']);
           return res['data'];
+      }));
+    }
+
+    public createComment(payload: any): Observable<any> {
+      return this.http.post(environment.base + 'createComment', payload).pipe(map((res) => {
+          this.productStore.update(res['productId'], (state) => {
+            return {reviews: [...state.reviews, (res as Comment)]};
+          });
+          return res;
       }));
     }
 }

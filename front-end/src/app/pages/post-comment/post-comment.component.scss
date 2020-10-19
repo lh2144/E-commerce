@@ -1,5 +1,6 @@
 @import 'variable';
 .post-comment {
+  height: 100%;
   header {
     margin-left: auto;
     margin-right: auto;
@@ -9,6 +10,16 @@
   .product-title {
     font-size: 1.5rem;
     font-weight: 400;
+  }
+  .detail {
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .rating {
+    & > div {
+      font-size: 14px;
+      font-weight: normal;
+    }
   }
   .container {
     font-size: 1.5rem;

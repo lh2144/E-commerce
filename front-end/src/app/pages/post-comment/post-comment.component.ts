@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'my-post-comment',
@@ -10,7 +11,9 @@ export class PostCommentComponent implements OnInit {
     public commentForm: FormGroup;
     public startMap: any = {};
     public activeMap: any;
-    public constructor(public fb: FormBuilder, public render: Renderer2) {}
+    public productId: string;
+
+    public constructor(public fb: FormBuilder, public render: Renderer2, public activeRoute: ActivatedRoute) {}
 
     public ngOnInit(): void {
         this.commentForm = this.fb.group({
@@ -25,13 +28,27 @@ export class PostCommentComponent implements OnInit {
         // this.startMap[4] = '&#9733;'.repeat(4);
         // this.startMap[5] = '&#9733;'.repeat(5);
         // this.commentForm.get('rating').valueChanges.subscribe((value))
+        this.activeRoute.params.subscribe(value => {
+          this.productId = value['id'];
+        });
     }
-
+    get f(): {[key: string]: AbstractControl} {
+      return this.commentForm.controls;
+    }
     public radioChange(value: Event): void {
       if (this.activeMap) {
         this.render.removeClass(this.activeMap, 'active');
       }
       this.render.addClass(value.target, 'active');
       this.activeMap = value.target;
+    }
+
+    public createReview(): void {
+      const payload = {};
+      payload['rating'] = this.f['rating'].value;
+      payload['nickName'] = this.f['nickName'].value;
+      payload['title'] = this.f['title'].value;
+      payload['detail'] = this.f['detail'].value;
+      payload['productId'] = this.f['productId'].value;
     }
 }
