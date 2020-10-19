@@ -1,15 +1,41 @@
-@import "variable";
+@import 'variable';
 
 label {
-  font-size: 14px;
-  font-weight: normal;
-  width: 100%;
-  margin: 16px 0 0;
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    margin: 16px 0 0;
+    position: relative;
 
-  &.no-margin {
-    margin-top: 0;
-  }
+    &.no-margin {
+        margin-top: 0;
+    }
+    &.radio {
+        max-width: 80px;
+        max-height: 47px;
+        min-width: 80px;
+        min-height: 47px;
+        text-align: center;
+        border: 1px solid $grey-light;
+        line-height: 47px;
+        margin-right: 0.5rem;
+        color: $blue-dark;
+        cursor: pointer;
+
+        &.active {
+            background-color: $yellow-dark;
+            color: white;
+        }
+    }
+
+    input.radio {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        left: 0;
+    }
 }
 .error {
-  border: 1px solid $red-cherry;
+    border: 1px solid $red-cherry;
 }

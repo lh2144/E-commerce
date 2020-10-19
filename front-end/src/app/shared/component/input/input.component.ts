@@ -17,6 +17,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     @Input() public min: number;
     @Input() public max: number;
     @Input() public model: string;
+    @Input() public value: string;
     @Input() public type: string;
     @Input() public label: string;
     @Input() public labelClass: string;
@@ -46,4 +47,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
         this.formDirective.valueAccessor.setDisabledState(isDisabled);
     }
 
+    public clickBehavior(e: any): void {
+      if (this.type === 'radio') {
+        e.stopPropagation();
+      }
+    }
 }
