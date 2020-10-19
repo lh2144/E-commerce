@@ -19,12 +19,12 @@ export class ProductService {
       }));
     }
 
-    public createComment(payload: any): Observable<any> {
+    public createComment(payload: any): Observable<Comment> {
       return this.http.post(environment.base + 'createComment', payload).pipe(map((res) => {
           this.productStore.update(res['productId'], (state) => {
             return {reviews: [...state.reviews, (res as Comment)]};
           });
-          return res;
+          return (res as Comment);
       }));
     }
 }
