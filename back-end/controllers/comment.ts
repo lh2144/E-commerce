@@ -29,6 +29,7 @@ const createComment = async (req: Request, res: Response, next) => {
         await product?.save();
 
         res.status(200).json({
+            id: response['_id'],
             title: response['title'],
             nickName: response['nickName'],
             detail: response['detail'],
