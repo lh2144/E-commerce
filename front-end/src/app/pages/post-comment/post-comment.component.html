@@ -1,31 +1,117 @@
 <div class="container post-comment mt-5">
-  <header>Submit a review</header>
-  <div class="product-title pl-5">Whey protein</div>
-  <div class="container mt-4 pt-3 pb-4">
-    <div class="row">
-      <div class="col-5">
-        <div>Write your review</div>
-      </div>
-      <div class="col-7 pl-5 pr-5">
-        <form [formGroup]="commentForm">
-          <div class="row no-gutters flex-column">
-            <div class="rating"></div>
-            <div class="nickName">
-              <my-input type="text" label="nickname" name="nickName" [formControl]="commentForm.controls['nickName']" [control]="commentForm.controls['nickName']"></my-input>
+    <header>Submit a review</header>
+    <div class="product-title pl-5">Whey protein</div>
+    <div class="container mt-4 pt-3 pb-4">
+        <div class="row">
+            <div class="col-5">
+                <div>Write your review</div>
             </div>
-            <div class="title">
-              <my-input type="text" label="title" name="title" [formControl]="commentForm.controls['title']" [control]="commentForm.controls['title']"></my-input>
+            <div class="col-7">
+                <form [formGroup]="commentForm" class="bg-white pl-5 pr-5">
+                    <div class="row no-gutters flex-column">
+                        <div class="rating row d-flex flex-row no-gutters">
+                            <div>
+                                <my-input
+                                    type="radio"
+                                    name="rating"
+                                    [labelClass]="'radio'"
+                                    [inputClass]="'radio'"
+                                    label="&#9733;"
+                                    [value]="'1'"
+                                    [formControl]="commentForm.controls['rating']"
+                                    [control]="commentForm.controls['rating']"
+                                    (click)="radioChange($event)"
+                                ></my-input>
+                            </div>
+                            <div>
+                                <my-input
+                                    type="radio"
+                                    name="rating"
+                                    [labelClass]="'radio'"
+                                    [inputClass]="'radio'"
+                                    [label]="'&#9733;&#9733;'"
+                                    [value]="'2'"
+                                    [formControl]="commentForm.controls['rating']"
+                                    [control]="commentForm.controls['rating']"
+                                    (click)="radioChange($event)"
+                                ></my-input>
+                            </div>
+                            <div>
+                                <my-input
+                                    type="radio"
+                                    name="rating"
+                                    [labelClass]="'radio'"
+                                    [inputClass]="'radio'"
+                                    [label]="'&#9733;&#9733;&#9733;'"
+                                    [value]="'3'"
+                                    [formControl]="commentForm.controls['rating']"
+                                    [control]="commentForm.controls['rating']"
+                                    (click)="radioChange($event)"
+                                ></my-input>
+                            </div>
+                            <div>
+                                <my-input
+                                    type="radio"
+                                    name="rating"
+                                    [labelClass]="'radio'"
+                                    [inputClass]="'radio'"
+                                    [label]="'&#9733;&#9733;&#9733;&#9733;'"
+                                    [value]="'4'"
+                                    [formControl]="commentForm.controls['rating']"
+                                    [control]="commentForm.controls['rating']"
+                                    (click)="radioChange($event)"
+                                ></my-input>
+                            </div>
+                            <div>
+                                <my-input
+                                    type="radio"
+                                    name="rating"
+                                    [labelClass]="'radio'"
+                                    [inputClass]="'radio'"
+                                    [label]="
+                                        '&#9733;&#9733;&#9733;&#9733;&#9733;'
+                                    "
+                                    [value]="'5'"
+                                    [formControl]="commentForm.controls['rating']"
+                                    [control]="commentForm.controls['rating']"
+                                    (click)="radioChange($event)"
+                                ></my-input>
+                            </div>
+                        </div>
+                        <div class="nickName">
+                            <my-input
+                                type="text"
+                                label="nickname"
+                                name="nickName"
+                                [formControl]="commentForm.controls['nickName']"
+                                [control]="commentForm.controls['nickName']"
+                            ></my-input>
+                        </div>
+                        <div class="title">
+                            <my-input
+                                type="text"
+                                label="title"
+                                name="title"
+                                [formControl]="commentForm.controls['title']"
+                                [control]="commentForm.controls['title']"
+                            ></my-input>
+                        </div>
+                        <div class="detail">
+                            <label for="detail">Your Reviews</label>
+                            <textarea
+                                id="detail"
+                                [formControl]="commentForm.controls['detail']"
+                                class="form-control"
+                            ></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-blue" type="button">
+                                Sumbit
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="detail">
-              <label for="detail">Your Reviews</label>
-              <textarea id="detail" [formControl]="commentForm.controls['detail']" class="form-control"></textarea>
-            </div>
-            <div>
-              <button class="btn btn-blue" type="button">Sumbit</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
