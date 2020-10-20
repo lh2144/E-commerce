@@ -1,13 +1,29 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
+import {
+    ControlValueAccessor,
+    FormControl,
+    FormControlDirective,
+    NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
     selector: 'my-input',
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
     providers: [
-        { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true }
-    ]
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: InputComponent,
+            multi: true,
+        },
+    ],
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
     @Input() public control: FormControl;
@@ -22,21 +38,28 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     @Input() public label: string;
     @Input() public labelClass: string;
     @Input() public inputClass: string;
-    @Output() public  modelChange: EventEmitter<string> = new EventEmitter<string>();
-    @ViewChild(FormControlDirective, { static: true }) public formDirective: FormControlDirective;
+    @Output() public modelChange: EventEmitter<string> = new EventEmitter<
+        string
+    >();
+    @ViewChild(FormControlDirective, { static: true })
+    public formDirective: FormControlDirective;
+    private change: (value) => {};
 
-    public constructor() { }
+    public constructor() {}
 
-    public ngOnInit(): void {
-    }
-    public onChanges(value: string): void {
-        this.modelChange.emit(value);
+    public ngOnInit(): void {}
+    public onChanges(value: Event): void {
+        this.modelChange.emit(value.target['value']);
+        if (this.type === 'radio') {
+            this.change(this.value);
+        }
     }
 
     public writeValue(value: any): void {
         this.formDirective.valueAccessor.writeValue(value);
     }
     public registerOnChange(fn: any): void {
+        this.change = fn;
         this.formDirective.valueAccessor.registerOnChange(fn);
     }
     public registerOnTouched(fn: any): void {
@@ -48,8 +71,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
 
     public clickBehavior(e: any): void {
-      if (this.type === 'radio') {
-        e.stopPropagation();
-      }
+        if (this.type === 'radio') {
+            // this.control.setValue(this.value);
+            e.stopPropagation();
+        }
     }
 }

@@ -19,7 +19,7 @@
                                     [labelClass]="'radio'"
                                     [inputClass]="'radio'"
                                     label="&#9733;"
-                                    [value]="'1'"
+                                    value="1"
                                     [formControl]="commentForm.controls['rating']"
                                     [control]="commentForm.controls['rating']"
                                     (click)="radioChange($event)"
@@ -32,7 +32,7 @@
                                     [labelClass]="'radio'"
                                     [inputClass]="'radio'"
                                     [label]="'&#9733;&#9733;'"
-                                    [value]="'2'"
+                                    value="2"
                                     [formControl]="commentForm.controls['rating']"
                                     [control]="commentForm.controls['rating']"
                                     (click)="radioChange($event)"
@@ -45,7 +45,7 @@
                                     [labelClass]="'radio'"
                                     [inputClass]="'radio'"
                                     [label]="'&#9733;&#9733;&#9733;'"
-                                    [value]="'3'"
+                                    value="3"
                                     [formControl]="commentForm.controls['rating']"
                                     [control]="commentForm.controls['rating']"
                                     (click)="radioChange($event)"
@@ -58,7 +58,7 @@
                                     [labelClass]="'radio'"
                                     [inputClass]="'radio'"
                                     [label]="'&#9733;&#9733;&#9733;&#9733;'"
-                                    [value]="'4'"
+                                    value="4"
                                     [formControl]="commentForm.controls['rating']"
                                     [control]="commentForm.controls['rating']"
                                     (click)="radioChange($event)"
@@ -73,7 +73,7 @@
                                     [label]="
                                         '&#9733;&#9733;&#9733;&#9733;&#9733;'
                                     "
-                                    [value]="'5'"
+                                    value="5"
                                     [formControl]="commentForm.controls['rating']"
                                     [control]="commentForm.controls['rating']"
                                     (click)="radioChange($event)"
@@ -107,7 +107,7 @@
                             ></textarea>
                         </div>
                         <div>
-                            <button class="btn btn-blue" type="button">
+                            <button class="btn btn-blue" type="button" (click)="createReview()">
                                 Sumbit
                             </button>
                         </div>

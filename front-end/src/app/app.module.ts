@@ -10,11 +10,12 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostCommentComponent } from './pages/post-comment/post-comment.component';
+import { AuthInterceptor } from './shared/service/interceptor/http.interceptor';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,10 @@ import { PostCommentComponent } from './pages/post-comment/post-comment.componen
         AkitaNgRouterStoreModule,
         NgbModule
     ],
-    providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' } }],
+    providers: [
+      { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' } },
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -35,6 +35,7 @@ const createComment = async (req: Request, res: Response, next) => {
             detail: response['detail'],
             rating: response['rating'],
             productId: response['productId'].toString(),
+            createdAt: response['createdAt']
         });
     } catch (err) {
         if (!err['statusCode']) {
