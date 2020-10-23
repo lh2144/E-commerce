@@ -9,6 +9,7 @@ import { ValidationMessageComponent } from './component/validation-message/valid
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { RouterModule } from '@angular/router';
 import { CommentComponent } from './component/comment/comment.component';
+import { CartItemComponent } from './component/cart-item/cart-item.component';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { CommentComponent } from './component/comment/comment.component';
         ValidationMessageComponent,
         HeaderComponent,
         CommentComponent,
+        CartItemComponent,
         ProductCardComponent,
         ReactiveFormsModule,
         FormsModule,
@@ -36,7 +38,8 @@ import { CommentComponent } from './component/comment/comment.component';
       HeaderComponent,
       CarouselComponent,
       ProductCardComponent,
-      CommentComponent
+      CommentComponent,
+      CartItemComponent
     ],
     providers: [],
 })

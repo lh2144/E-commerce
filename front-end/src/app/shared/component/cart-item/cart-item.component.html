@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="row d-flex" [hidden]="editMode">
+    <div class="img"><img [src]="cart?.imgUrl"></div>
+    <div class="row no-gutter d-flex flex-grow-1 flex-column">
+      <div> {{ cart?.productName }}</div>
+      <div> {{ cart?.price }}</div>
+      <div> {{ cart?.quantity }}</div>
+    </div>
+  </div>
+  <div class="row d-flex" [hidden]="!editMode">
+    <div class="img mr-auto">
+      <img [src]="cart?.imgUrl">
+    </div>
+    <div> {{ cart?.productName }}</div>
+    <div class="quantity row flex-row no-gutters">
+      <div class="minus" (click)="onQuantityChange(-1)">
+        -
+      </div>
+      <div class="input">
+        <input type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
+      </div>
+      <div class="plus" (click)="onQuantityChange(1)">
+        +
+      </div>
+    </div>
+    <div class="price">${{ quantity * cart?.price }}</div>
+  </div>
+</div>
