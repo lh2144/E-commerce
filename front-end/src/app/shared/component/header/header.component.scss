@@ -25,9 +25,28 @@
 
         span {
             color: black;
-            font-size: 22px;
+            font-size: 18px;
+            vertical-align: inherit;
+        }
+        .icon-blue {
+            color: $blue-dark !important;
+            font-size: 24px;
         }
         .dropdown {
+            .dropbtn {
+              position: relative;
+              .circle {
+                position: absolute;
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                color: white;
+                background-color: black;
+                left: 30px;
+                font-size: 10px;
+              }
+            }
             .drop-content {
                 position: absolute;
                 visibility: hidden;
@@ -47,7 +66,7 @@
                 }
 
                 &.show {
-                  visibility: visible;
+                    visibility: visible;
                 }
 
                 ul {
@@ -92,5 +111,3 @@
         }
     }
 }
-
-

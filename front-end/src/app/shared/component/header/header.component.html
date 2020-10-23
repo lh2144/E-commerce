@@ -17,22 +17,45 @@
     <div class="nav-right col-4 row">
         <div class="account dropdown col-6" (click)="ondropDownClick($event)">
             <button class="btn dropbtn">
+                <span class="material-icons icon-blue">account_circle </span>
                 <span>Account</span>
             </button>
-            <div class="drop-content card" [ngClass]="{'show': showDropDown}">
-                <div class="row no-gutters log"  *ngIf="userQuery.currentUser |
-                async;else register">
-                  <div class="account-name mr-auto">Hello {{userQuery.currentUser | async}}</div>
-                  <div class="log-out" (click)="logout()" *ngIf="userQuery.currentUser | async">Log out</div>
+            <div class="drop-content card" [ngClass]="{ show: showDropDown }">
+                <div
+                    class="row no-gutters log"
+                    *ngIf="userQuery.currentUser | async; else register"
+                >
+                    <div class="account-name mr-auto">
+                        Hello {{ userQuery.currentUser | async }}
+                    </div>
+                    <div
+                        class="log-out"
+                        (click)="logout()"
+                        *ngIf="userQuery.currentUser | async"
+                    >
+                        Log out
+                    </div>
                 </div>
                 <ng-template #register>
-                  <div class="row d-flex flex-column no-gutters log">
-                    <button class="log-in btn btn-blue" [routerLink]="'/login'">Log In</button>
-                    <button class="register btn btn-blue" [routerLink]="'/register'">Register</button>
-                  </div>
+                    <div class="row d-flex flex-column no-gutters log">
+                        <button
+                            class="log-in btn btn-blue"
+                            [routerLink]="'/login'"
+                        >
+                            Log In
+                        </button>
+                        <button
+                            class="register btn btn-blue"
+                            [routerLink]="'/register'"
+                        >
+                            Register
+                        </button>
+                    </div>
                 </ng-template>
                 <ul>
-                    <li *ngIf="userQuery.currentUser | async"><a>Your account</a></li>
+                    <li *ngIf="userQuery.currentUser | async">
+                        <a>Your account</a>
+                    </li>
                     <li><a>Your order</a></li>
                     <li><a>Your refer</a></li>
                 </ul>
@@ -40,8 +63,9 @@
         </div>
         <div class="cart dropdown col-6">
             <button class="btn dropbtn">
-                <span></span>
-                <span>Cart</span>
+                <span class="material-icons icon-blue"> shopping_cart </span>
+                <span class="cart pl-2">Cart</span>
+                <span class="circle">1</span>
             </button>
             <div class="drop-content card cart-item">
                 <ul>
