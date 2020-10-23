@@ -5,14 +5,17 @@ const Schema = mongoose.Schema;
 
 
 const cartSchema = new Schema({
+    _id: String,
     shippingAddress: {
         type: AddressSchema,
-        required: true
+        required: false
     },
     contactEmail: String,
     price: {
         type: Number,
         required: true
     },
-    cartItem: [productSchema]
+    items: [productSchema]
 });
+
+export default mongoose.model('Cart', cartSchema);
