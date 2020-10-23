@@ -33,7 +33,7 @@ const postCart = async (req: Request, res: Response, next) => {
     }
     const cartId = req['id'];
     const items = req.body.items;
-    const price = req.body.price;
+    const totalPrice = req.body.totalPrice;
     try {
         let shippingAddress;
         let contactEmail;
@@ -47,10 +47,10 @@ const postCart = async (req: Request, res: Response, next) => {
             shippingAddress,
             contactEmail,
             items,
-            price
+            totalPrice
         });
         await cart.save();
-        res.status(200).json({shippingAddress, _id: cartId, contactEmail, price, items});
+        res.status(200).json({ id: cartId, totalPrice, items });
     } catch (err) {
         if (!err['statusCode']) {
             err['statusCode'] = 500;

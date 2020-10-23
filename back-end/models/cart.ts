@@ -11,11 +11,11 @@ const cartSchema = new Schema({
         required: false
     },
     contactEmail: String,
-    price: {
+    totalPrice: {
         type: Number,
         required: true
     },
-    items: [productSchema]
+    items: [{productName: String, price: Number, quantity: Number}]
 });
 
 export default mongoose.model('Cart', cartSchema);
