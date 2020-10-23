@@ -1,15 +1,32 @@
 <div class="product-wrapper">
-  <div class="container no-gutters">
-    <div class="row d-flex flex-column">
-      <div class="img">
-        <img [src]="product?.imgUrl">
-      </div>
-      <div class="name mt-2 pl-2 text-center">
-        {{product?.productName}}
-      </div>
-      <div class="price mt-2 mb-2 pl-2 text-center">
-        {{product?.price}}
-      </div>
+    <div class="container no-gutters">
+        <ng-container *ngIf="layout === 'row';else coloum">
+            <div class="row d-flex flex-column">
+                <div class="img">
+                    <img [src]="product?.imgUrl" />
+                </div>
+                <div class="name mt-2 pl-2 text-center">
+                    {{ product?.productName }}
+                </div>
+                <div class="price mt-2 mb-2 pl-2 text-center">
+                    {{ product?.price }}
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #coloum>
+          <div class="row d-flex">
+            <div class="img">
+              <img [src]="product?.imgUrl" />
+            </div>
+            <div class="row d-flex flex-column no-gutters flex-grow-1">
+              <div class="name mt-2 pl-2 text-center">
+                {{ product?.productName}}
+              </div>
+              <div class="price mt-2 mb-2 pl-2 text-center">
+                {{ product?.price }}
+            </div>
+            </div>
+          </div>
+        </ng-template>
     </div>
-  </div>
 </div>

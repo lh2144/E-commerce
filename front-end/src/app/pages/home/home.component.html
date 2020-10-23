@@ -5,7 +5,7 @@
     <div class="row no-gutters">
       <ng-container *ngFor="let product of allProducts | async">
         <div class="product-item card" (click)="goToDetail(product)">
-          <my-product-card [product]="product"></my-product-card>
+          <my-product-card [product]="product" [layout]="'row'"></my-product-card>
         </div>
       </ng-container>
     </div>
