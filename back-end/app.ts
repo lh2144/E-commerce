@@ -32,7 +32,7 @@ app.use((err: any, req: Request, res: Response, next: any) => {
     const message = err.message;
     const data = err.data;
 
-    // render the error page
+    // render the error message
     res.status(status).json({ message, data });
 });
 
