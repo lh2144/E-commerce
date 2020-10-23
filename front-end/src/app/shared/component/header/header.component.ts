@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { CustomerService } from 'service';
 import { UserQuery } from 'src/app/core/service/customer/customer.query';
 import { UserStore } from 'src/app/core/service/customer/customer.store';
+import { StateService } from '../../service/state.service';
 
 @Component({
     selector: 'my-header',
@@ -11,8 +12,21 @@ import { UserStore } from 'src/app/core/service/customer/customer.store';
 })
 export class HeaderComponent implements OnInit {
     public searchControl: FormControl;
-    public showDropDown: boolean = false;
-    public constructor(public customerService: CustomerService, public userQuery: UserQuery, public userStore: UserStore) {}
+    public showDropDown: BackDrop = {
+        cart: false,
+        account: false,
+    };
+    public constructor(
+        public customerService: CustomerService,
+        public userQuery: UserQuery,
+        public userStore: UserStore,
+        public stateService: StateService
+    ) {
+      this.stateService.dropDownBdrop$.subscribe((state: BackDrop) => {
+        this.showDropDown['cart'] = state['cart'];
+        this.showDropDown['account'] = state['account'];
+      });
+    }
 
     public ngOnInit(): void {
         this.searchControl = new FormControl('test', []);
@@ -20,10 +34,10 @@ export class HeaderComponent implements OnInit {
 
     public logout(): void {}
 
-    public ondropDownClick(e): void {
-      this.showDropDown = true;
-      if (e.target.closest('.drop-content')) {
-        this.showDropDown = false;
-      }
+    public ondropDownClick(e: Event, type: string): void {
+        this.showDropDown[type] = true;
+        if ((e.target as HTMLElement).closest('.drop-content')) {
+            this.showDropDown[type] = false;
+        }
     }
 }

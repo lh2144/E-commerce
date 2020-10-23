@@ -15,12 +15,12 @@
         </div>
     </nav>
     <div class="nav-right col-4 row">
-        <div class="account dropdown col-6" (click)="ondropDownClick($event)">
+        <div class="account dropdown col-6" (click)="ondropDownClick($event, 'account')">
             <button class="btn dropbtn">
                 <span class="material-icons icon-blue">account_circle </span>
                 <span>Account</span>
             </button>
-            <div class="drop-content card" [ngClass]="{ show: showDropDown }">
+            <div class="drop-content card" [class]="{ show: showDropDown['account'] }">
                 <div
                     class="row no-gutters log"
                     *ngIf="userQuery.currentUser | async; else register"
@@ -61,13 +61,13 @@
                 </ul>
             </div>
         </div>
-        <div class="cart dropdown col-6">
+        <div class="cart dropdown col-6" (click)="ondropDownClick($event, 'cart')">
             <button class="btn dropbtn">
                 <span class="material-icons icon-blue"> shopping_cart </span>
                 <span class="cart pl-2">Cart</span>
                 <span class="circle">1</span>
             </button>
-            <div class="drop-content card cart-item">
+            <div class="drop-content card cart-item" [class]="{ show: showDropDown['cart'] }">
                 <ul>
                     <li>item1</li>
                     <li>item2</li>
