@@ -5,6 +5,7 @@ import { CartStore } from './cart.store';
 
 @Injectable({ providedIn: 'root' })
 export class CartQuery extends Query<Cart> {
+    public cartItems$ = this.select('items');
     public constructor(protected store: CartStore) {
         super(store);
     }

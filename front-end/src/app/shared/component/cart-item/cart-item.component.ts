@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartItem } from 'src/app/core/service/cart/cartItem.modal';
 
 @Component({
     selector: 'my-cart-item',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./cart-item.component.scss'],
 })
 export class CartItemComponent implements OnInit {
-    @Input() public cart;
+    @Input() public cart: CartItem;
     @Input() public editMode: boolean = false;
     public  quantity: number;
 

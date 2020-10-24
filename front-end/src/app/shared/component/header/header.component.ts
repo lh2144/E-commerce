@@ -1,6 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { CustomerService } from 'service';
+import { CartQuery } from 'src/app/core/service/cart/cart.query';
+import { CartItem } from 'src/app/core/service/cart/cartItem.modal';
 import { UserQuery } from 'src/app/core/service/customer/customer.query';
 import { UserStore } from 'src/app/core/service/customer/customer.store';
 import { StateService } from '../../service/state.service';
@@ -11,6 +14,8 @@ import { StateService } from '../../service/state.service';
     styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+    public cartItems: Observable<CartItem[]>;
+    public itemQuantity: number;
     public searchControl: FormControl;
     public showDropDown: BackDrop = {
         cart: false,
@@ -20,12 +25,19 @@ export class HeaderComponent implements OnInit {
         public customerService: CustomerService,
         public userQuery: UserQuery,
         public userStore: UserStore,
-        public stateService: StateService
+        public stateService: StateService,
+        public cartQuery: CartQuery
     ) {
-      this.stateService.dropDownBdrop$.subscribe((state: BackDrop) => {
-        this.showDropDown['cart'] = state['cart'];
-        this.showDropDown['account'] = state['account'];
-      });
+        this.stateService.dropDownBdrop$.subscribe((state: BackDrop) => {
+            this.showDropDown['cart'] = state['cart'];
+            this.showDropDown['account'] = state['account'];
+        });
+        this.cartItems = this.cartQuery.cartItems$;
+        this.cartItems.subscribe((items) => {
+            items?.forEach(val => {
+              this.itemQuantity += val.quantity;
+            });
+        });
     }
 
     public ngOnInit(): void {

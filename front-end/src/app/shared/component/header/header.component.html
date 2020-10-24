@@ -65,13 +65,16 @@
             <button class="btn dropbtn">
                 <span class="material-icons icon-blue"> shopping_cart </span>
                 <span class="cart pl-2">Cart</span>
-                <span class="circle">1</span>
+                <span class="circle" *ngIf="itemQuantity > 0">{{ itemQuantity }}</span>
             </button>
             <div class="drop-content card cart-item" [class]="{ show: showDropDown['cart'] }">
-                <ul>
-                    <li>item1</li>
-                    <li>item2</li>
-                </ul>
+                <div class="row no-gutters flex-column">
+                  <div>{{ itemQuantity }} in your carts</div>
+                  <button class="btn btn-blue">View Cart</button>
+                </div>
+                <ng-container *ngFor="let item of cartItems">
+                    <my-cart-item [cart]="item"></my-cart-item>
+                </ng-container>
             </div>
         </div>
         <div class="dropdown-overlay"></div>
