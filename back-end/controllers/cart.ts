@@ -16,10 +16,11 @@ const getCart = async (req: Request, res: Response, next) => {
                 items: cart['items'],
                 shippingAddress: cart['shippingAddress'],
                 contactEmail: cart['contactEmail'],
-                price: cart['price']
+                totalPrice: cart['totalPrice'],
             });
+        } else {
+            res.status(200).json({});
         }
-        res.status(200).json({});
     } catch (err) {
         next(err);
     }
@@ -42,15 +43,28 @@ const postCart = async (req: Request, res: Response, next) => {
             shippingAddress = user['address'];
             contactEmail = user['email'];
         }
-        const cart = new Cart({
-            _id: cartId,
-            shippingAddress,
-            contactEmail,
-            items,
-            totalPrice
-        });
-        await cart.save();
-        res.status(200).json({ id: cartId, totalPrice, items });
+
+        const activeCart = await Cart.findById(cartId);
+        if (activeCart) {
+            await Cart.updateOne({ _id: cartId }, { totalPrice, items });
+            const updateCart = await Cart.findById(cartId);
+            console.log(updateCart);
+            if (updateCart) {
+                res.status(200).json({ id: cartId, totalPrice: updateCart['totalPrice'], items: updateCart['items'] });
+                res.end();
+            }
+        } else {
+            const cart = new Cart({
+                _id: cartId,
+                shippingAddress,
+                contactEmail,
+                items,
+                totalPrice,
+            });
+            await cart.save();
+            res.status(200).json({ id: cartId, totalPrice, items });
+            res.end();
+        }
     } catch (err) {
         if (!err['statusCode']) {
             err['statusCode'] = 500;
