@@ -1,28 +1,33 @@
 <div class="wrapper">
-  <div class="row no-gutters" [hidden]="editMode">
-    <div class="img"><img [src]="product?.imgUrl"></div>
-    <div class="row no-gutter d-flex flex-grow-1 flex-column">
-      <div> {{ cart?.productName }}</div>
-      <div> {{ cart?.price }}</div>
-      <div> {{ cart?.quantity }}</div>
+    <div class="row no-gutters" [hidden]="editMode">
+        <div class="img">
+            <img [src]="product?.imgUrl" width="70" height="70" />
+        </div>
+        <div class="row no-gutters d-flex flex-grow-1 flex-column pl-4">
+            <div>{{ cart?.productName }}</div>
+            <div>${{ cart?.price }}</div>
+            <div>Quantity: {{ cart?.quantity }}</div>
+        </div>
     </div>
-  </div>
-  <div class="row no-gutters" [hidden]="!editMode">
-    <div class="img mr-auto">
-      <img [src]="product?.imgUrl">
+    <div class="row no-gutters" [hidden]="!editMode">
+        <div class="mr-auto">
+            <div class="img">
+                <img [src]="product?.imgUrl" width="70" height="70" />
+            </div>
+            <div>{{ cart?.productName }}</div>
+        </div>
+        <div class="quantity row flex-row no-gutters col-2">
+            <div class="minus" (click)="onQuantityChange(-1)">-</div>
+            <div class="input">
+                <input
+                    type="text"
+                    name="quantity"
+                    class="form-control"
+                    [(ngModel)]="quantity"
+                />
+            </div>
+            <div class="plus" (click)="onQuantityChange(1)">+</div>
+        </div>
+        <div class="price col-2">${{ totalPrice }}</div>
     </div>
-    <div> {{ cart?.productName }}</div>
-    <div class="quantity row flex-row no-gutters">
-      <div class="minus" (click)="onQuantityChange(-1)">
-        -
-      </div>
-      <div class="input">
-        <input type="text" name="quantity" class="form-control" [(ngModel)]="quantity">
-      </div>
-      <div class="plus" (click)="onQuantityChange(1)">
-        +
-      </div>
-    </div>
-    <div class="price">${{ quantity * cart?.price }}</div>
-  </div>
 </div>

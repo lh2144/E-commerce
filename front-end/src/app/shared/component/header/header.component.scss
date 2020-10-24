@@ -34,18 +34,18 @@
         }
         .dropdown {
             .dropbtn {
-              position: relative;
-              .circle {
-                position: absolute;
-                display: inline-block;
-                width: 14px;
-                height: 14px;
-                border-radius: 50%;
-                color: white;
-                background-color: black;
-                left: 30px;
-                font-size: 10px;
-              }
+                position: relative;
+                .circle {
+                    position: absolute;
+                    display: inline-block;
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    color: white;
+                    background-color: black;
+                    left: 30px;
+                    font-size: 10px;
+                }
             }
             .drop-content {
                 position: absolute;
@@ -58,6 +58,10 @@
                 &.cart-item {
                     top: 100%;
                     left: -50%;
+                    min-width: 320px;
+                    padding: 12px;
+                    max-height: 480px;
+                    overflow-y: initial;
                 }
                 & > .log {
                     background-color: $light-grey;
@@ -68,7 +72,13 @@
                 &.show {
                     visibility: visible;
                 }
-
+                .cart-title {
+                    background-color: $light-grey;
+                    .cart-price {
+                        font-size: 24px;
+                        font-weight: 500;
+                    }
+                }
                 ul {
                     list-style: none;
                     padding-left: 0;

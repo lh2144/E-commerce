@@ -69,8 +69,11 @@
             </button>
             <div class="drop-content card cart-item" [class]="{ show: showDropDown['cart'] }">
                 <div class="row no-gutters flex-column">
-                  <div>{{ itemQuantity }} in your carts</div>
-                  <button class="btn btn-blue">View Cart</button>
+                  <div class="col-12 row no-gutters cart-title">
+                    <div class="mr-auto">{{ itemQuantity }} in your carts</div>
+                    <div class="cart-price">{{ totalPrice }}</div>
+                  </div>
+                  <button class="btn btn-blue" routerLink="/mybasket">View Cart</button>
                 </div>
                 <ng-container *ngFor="let item of cartItems | async">
                     <my-cart-item [cart]="item" [editMode]="false"></my-cart-item>

@@ -2,8 +2,8 @@ import { Address } from './address.model';
 import { CartItem } from './cartItem.modal';
 
 export interface Cart {
-    shippingAddress: Address;
+    shippingAddress?: Address;
     totalPrice: number;
-    contactEmail: string;
+    contactEmail?: string;
     items: CartItem[];
 }

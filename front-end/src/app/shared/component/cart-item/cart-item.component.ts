@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { Product, ProductQuery } from 'service';
+import { CartService } from 'src/app/core/service/cart/cart.service';
 import { CartItem } from 'src/app/core/service/cart/cartItem.modal';
 
 @Component({
@@ -14,8 +15,9 @@ export class CartItemComponent implements OnInit, OnChanges {
     @Input() public editMode: boolean;
     public product: Product;
     public quantity: number;
+    public totalPrice: number;
 
-    public constructor(public productQuery: ProductQuery) {
+    public constructor(public productQuery: ProductQuery, public cartService: CartService) {
 
     }
 
@@ -31,10 +33,15 @@ export class CartItemComponent implements OnInit, OnChanges {
       }).pipe(distinctUntilChanged((x, y) => x.productName === y.productName)).subscribe(product => {
         this.product = product;
       });
+      this.quantity = this.cart.quantity;
+      this.totalPrice = this.quantity * this.cart?.price;
     }
 
     public onQuantityChange(count: number): void {
       this.quantity += count;
+      this.totalPrice = this.quantity * this.cart?.price;
+
+      this.cartService.postCart({totalPrice: this.totalPrice, items: [{...this.cart, quantity: this.quantity}]}).subscribe();
     }
 
 }

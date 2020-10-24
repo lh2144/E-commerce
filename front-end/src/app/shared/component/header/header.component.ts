@@ -16,6 +16,7 @@ import { StateService } from '../../service/state.service';
 export class HeaderComponent implements OnInit {
     public cartItems: Observable<CartItem[]>;
     public itemQuantity: number = 0;
+    public totalPrice: number = 0;
     public searchControl: FormControl;
     public showDropDown: BackDrop = {
         cart: false,
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
         this.cartItems = this.cartQuery.cartItems$;
         this.cartItems.subscribe((items) => {
             if (items && items.length > 0) {
+                this.itemQuantity = 0;
                 items.forEach((val) => {
                     this.itemQuantity += val.quantity;
                 });
@@ -44,6 +46,11 @@ export class HeaderComponent implements OnInit {
 
     public ngOnInit(): void {
         this.searchControl = new FormControl('test', []);
+        this.cartQuery.select('totalPrice').subscribe(price => {
+          if (price) {
+            this.totalPrice = price;
+          }
+        });
     }
 
     public logout(): void {}

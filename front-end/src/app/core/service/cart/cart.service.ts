@@ -11,16 +11,26 @@ export class CartService {
     public constructor(public cartStore: CartStore, public http: HttpClient) {}
 
     public getCart(): Observable<Cart> {
-      return this.http.get(environment.base + 'buyflow/cart').pipe(map((res) => {
-        this.cartStore.update(res);
-        return (res as Cart);
-      }));
+        return this.http.get(environment.base + 'buyflow/cart').pipe(
+            map((res) => {
+                this.cartStore.update(res);
+                return res as Cart;
+            })
+        );
     }
 
     public postCart(payload: any): Observable<Cart> {
-      return this.http.post(environment.base + 'buyflow/cart', payload).pipe(map(res => {
-        this.cartStore.update(res);
-        return (res as Cart);
-      }));
+        return this.http.post(environment.base + 'buyflow/cart', payload).pipe(
+            map((res) => {
+                this.cartStore.update(res);
+                return res as Cart;
+            })
+        );
+    }
+
+    public construcePayload(payload: Partial<Cart>): any {
+      let cart;
+      cart = {...payload};
+      return cart;
     }
 }
