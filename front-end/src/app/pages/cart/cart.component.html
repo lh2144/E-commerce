@@ -1,0 +1,40 @@
+<div class="cart-wrapper mt-5">
+    <div class="container mt-5">
+        <div class="row d-flex flex-column">
+            <div class="col-12">
+                <header>Your Cart</header>
+                <div class="row no-gutters">
+                    <div class="mr-auto">Items</div>
+                    <div class="col-2">Quantity</div>
+                    <div class="col-2">Price</div>
+                </div>
+                <div class="divider mb-3"></div>
+                <div
+                    class="row no-gutters"
+                    *ngFor="let item of cartItems | async"
+                >
+                    <div class="col-12">
+                        <my-cart-item
+                            [editMode]="true"
+                            [cart]="item"
+                        ></my-cart-item>
+                    </div>
+                    <div class="divider mt-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="check-out">
+            <div class="row justify-content-end">
+                <div class="col-5 bg-gray">
+                    <div class="row no-gutters">
+                        <div class="flex-grow-1">Cart Subtotal</div>
+                        <div class="flex-grow-1">%50</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <button class="btn btn-blue">Checkout Now</button>
+            </div>
+        </div>
+    </div>
+</div>

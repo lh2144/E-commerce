@@ -16,6 +16,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostCommentComponent } from './pages/post-comment/post-comment.component';
 import { AuthInterceptor } from './shared/service/interceptor/http.interceptor';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { AuthInterceptor } from './shared/service/interceptor/http.interceptor';
         RegisterComponent,
         ProductDetailComponent,
         HomeComponent,
-        PostCommentComponent
+        PostCommentComponent,
+        CartComponent
     ],
     imports: [
         BrowserModule,

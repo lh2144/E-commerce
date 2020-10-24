@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CartService } from './core/service/cart/cart.service';
 import { UserQuery } from './core/service/customer/customer.query';
 import { CustomerService } from './core/service/customer/customer.service';
 import { UserState } from './core/service/customer/user.model';
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
         public customerService: CustomerService,
         public userQuery: UserQuery,
         public productService: ProductService,
-        public stateService: StateService
+        public stateService: StateService,
+        public carService: CartService
     ) {}
 
     public ngOnInit(): void {
@@ -28,7 +30,11 @@ export class AppComponent implements OnInit {
               localStorage.removeItem('sessionToken');
             }
         );
-        this.currentUser.subscribe(() => {});
+        this.currentUser.subscribe((user) => {
+          if (user) {
+            this.carService.getCart().subscribe();
+          }
+        });
         this.productService.getAllProduct().subscribe();
     }
 
