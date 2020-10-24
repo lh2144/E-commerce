@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { CartService } from './core/service/cart/cart.service';
 import { UserQuery } from './core/service/customer/customer.query';
 import { CustomerService } from './core/service/customer/customer.service';
@@ -30,8 +31,8 @@ export class AppComponent implements OnInit {
               localStorage.removeItem('sessionToken');
             }
         );
-        this.currentUser.subscribe((user) => {
-          if (user) {
+        this.currentUser.pipe(distinctUntilChanged((x, y) => x.name === y.name)).subscribe((user) => {
+          if (user.name) {
             this.carService.getCart().subscribe();
           }
         });

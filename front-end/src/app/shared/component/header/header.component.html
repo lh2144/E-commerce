@@ -72,8 +72,8 @@
                   <div>{{ itemQuantity }} in your carts</div>
                   <button class="btn btn-blue">View Cart</button>
                 </div>
-                <ng-container *ngFor="let item of cartItems">
-                    <my-cart-item [cart]="item"></my-cart-item>
+                <ng-container *ngFor="let item of cartItems | async">
+                    <my-cart-item [cart]="item" [editMode]="false"></my-cart-item>
                 </ng-container>
             </div>
         </div>
