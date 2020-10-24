@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { commentSchema } from './comment';
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
+export const productSchema = new Schema({
     productName: {
         type: String,
         required: true

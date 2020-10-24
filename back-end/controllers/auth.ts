@@ -35,6 +35,7 @@ const login = async (req: Request, res: Response, next) => {
             throw error;
         }
         const token = jwt.sign({
+            id: loadedUser['_id'],
             email: loadedUser['email'],
             name: loadedUser['name']
         }, 'newNodeProject', { expiresIn: '1h'});

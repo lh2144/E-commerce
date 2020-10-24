@@ -3,6 +3,7 @@ import path from 'path';
 import usersRouter from './routes/users';
 import productRouter from './routes/product';
 import commentRouter from './routes/comment';
+import cartRouter from './routes/cart';
 import db from './db/mongoose';
 
 const app = express();
@@ -23,6 +24,7 @@ app.use((req: Request, res: Response, next) => {
 app.use(usersRouter);
 app.use(productRouter);
 app.use(commentRouter);
+app.use('/buyflow', cartRouter);
 // error handler
 app.use((err: any, req: Request, res: Response, next: any) => {
     console.log(err);
@@ -30,7 +32,7 @@ app.use((err: any, req: Request, res: Response, next: any) => {
     const message = err.message;
     const data = err.data;
 
-    // render the error page
+    // render the error message
     res.status(status).json({ message, data });
 });
 
