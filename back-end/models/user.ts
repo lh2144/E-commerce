@@ -3,6 +3,7 @@ import validator from 'validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import express from 'express';
+import { AddressSchema } from './address';
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -32,7 +33,8 @@ const userSchema = new mongoose.Schema({
     loginAt: {
         type: Date,
         required: false
-    }
+    },
+    address: AddressSchema
 });
 export default mongoose.model('User', userSchema) ;
 
