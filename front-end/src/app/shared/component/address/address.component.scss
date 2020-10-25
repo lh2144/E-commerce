@@ -7,8 +7,11 @@
 
   }
   .active {
-    background-color: $yellow-light;
-    border: 1px solid #FBD8B4;
+    border: 2px solid $blue-dark;
     border-radius: 5px;
+  }
+  header {
+    font-size: 18px;
+    font-weight: 500;
   }
 }

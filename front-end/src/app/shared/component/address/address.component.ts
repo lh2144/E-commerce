@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,8 +7,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     styleUrls: ['./address.component.scss'],
 })
 export class AddressComponent implements OnInit {
-    public editmode = false;
-    public addressType: string = 'shipping';
+    @Input() public editmode = false;
+    @Input() public addressType: string = 'shipping';
     public defaultShipping;
     public addresses = [
         'Hang lian 12425 WHISPER HOLLOW DR APT J, MARYLAND HEIGHTS, MO, 63043-3698 United States Edit address',
