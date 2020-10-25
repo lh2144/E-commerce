@@ -1,7 +1,12 @@
 import Cart from '../models/cart';
 import User from '../models/user';
+import Order from '../models/order';
 import { Request, Response } from 'express';
 import { error } from '../middleware/error';
+import mongoose from 'mongoose';
+import { ObjectID } from 'mongodb';
+
+// const ObjectId = mongoose.Types.ObjectId;
 const stripe = require('stripe')(
     'pk_test_51HfxuTEODCEgB92csJjsHcLCdScmobY2pdaAhK8XjnOyxbBBkzBIHSrYHsGgEZQhs7mlYOe33TDMAM5rDiehWfek00p7E2wGpn'
 );
@@ -79,9 +84,7 @@ const postCart = async (req: Request, res: Response, next) => {
 
 const getPaymentIntent = async (req: Request, res: Response, next) => {
     const userId = req['id'];
-    if (!userId) {
-        throw error('user should login to checkout', 500);
-    }
+
     try {
         const cart = await Cart.findById(userId);
         if (!cart) {
@@ -93,10 +96,52 @@ const getPaymentIntent = async (req: Request, res: Response, next) => {
             currency: 'usd',
             metadata: { integration_check: 'accept_a_payment' },
         });
-        res.status(200).json({client_secret: paymentIntent.client_secret});
+        res.status(200).json({ client_secret: paymentIntent.client_secret });
     } catch (err) {
         next(err);
     }
 };
 
-export { getCart, postCart };
+const placeOrder = async (req: Request, res: Response, next) => {
+    const userId = req['id'];
+    try {
+        const user = await User.findById(userId).populate('cart').exec();
+        if (!user) {
+            throw error('user dont exist or some db issuer', 500);
+        }
+        const totalPrice = user['cart']['totalPrice'];
+        const email = user['email'];
+        const products: any = [];
+        const cartItems = user['cart']['items'];
+        for (const item of cartItems) {
+            products.push({ ...item });
+        }
+        const orderId = genereateOrderId();
+        const order = new Order({
+            _id: orderId,
+            userId: new ObjectID(userId),
+            products
+        });
+        await order.save();
+        res.status(200).json({ email, products, totalPrice });
+    } catch (err) {
+        next(err);
+    }
+};
+
+function genereateOrderId(): string {
+    const data = new Date();
+    const year = data.getFullYear;
+    const month = data.getMonth;
+    const date = data.getDate;
+    const hour = data.getHours;
+    const minute = data.getMinutes;
+    const second = data.getSeconds;
+    const random = Math.floor(Math.random() * 10);
+    let res = '';
+    res = year.toString() + '-' +
+        month.toString() + date.toString() + hour.toString() + '-' +
+        minute.toString() + second.toString() + random;
+    return res;
+}
+export { getCart, postCart, placeOrder };
