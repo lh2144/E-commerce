@@ -1,6 +1,10 @@
 import Cart from '../models/cart';
 import User from '../models/user';
 import { Request, Response } from 'express';
+import { error } from '../middleware/error';
+const stripe = require('stripe')(
+    'pk_test_51HfxuTEODCEgB92csJjsHcLCdScmobY2pdaAhK8XjnOyxbBBkzBIHSrYHsGgEZQhs7mlYOe33TDMAM5rDiehWfek00p7E2wGpn'
+);
 
 const getCart = async (req: Request, res: Response, next) => {
     if (!req['isLogged']) {
@@ -70,6 +74,28 @@ const postCart = async (req: Request, res: Response, next) => {
             err['statusCode'] = 500;
             next(err);
         }
+    }
+};
+
+const getPaymentIntent = async (req: Request, res: Response, next) => {
+    const userId = req['id'];
+    if (!userId) {
+        throw error('user should login to checkout', 500);
+    }
+    try {
+        const cart = await Cart.findById(userId);
+        if (!cart) {
+            throw error('cart dont exits', 500);
+        }
+        const amount = cart['totalPrice'];
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount,
+            currency: 'usd',
+            metadata: { integration_check: 'accept_a_payment' },
+        });
+        res.status(200).json({client_secret: paymentIntent.client_secret});
+    } catch (err) {
+        next(err);
     }
 };
 
