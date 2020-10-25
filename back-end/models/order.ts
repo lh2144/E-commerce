@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { AddressSchema } from './address';
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
@@ -10,6 +11,12 @@ const orderSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'User'
+    },
+    shippingAddress: AddressSchema,
+    billingAddress: AddressSchema,
+    amount: {
+        type: Number,
+        required: true
     },
     products: [{
         product: {

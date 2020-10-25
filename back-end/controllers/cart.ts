@@ -144,4 +144,4 @@ function genereateOrderId(): string {
         minute.toString() + second.toString() + random;
     return res;
 }
-export { getCart, postCart, placeOrder };
+export { getCart, postCart, placeOrder, getPaymentIntent };
