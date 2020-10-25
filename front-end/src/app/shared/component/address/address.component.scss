@@ -1,0 +1,14 @@
+@import 'variable';
+
+.address-wrapper {
+  a {
+    color: $blue-dark;
+    cursor: pointer;
+
+  }
+  .active {
+    background-color: $yellow-light;
+    border: 1px solid #FBD8B4;
+    border-radius: 5px;
+  }
+}

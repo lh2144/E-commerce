@@ -1,1 +1,44 @@
-<p>address works!</p>
+<div class="address-wrapper">
+  <div class="container-fluid shipping ml-2 mr-2" [hidden]="editmode">
+    <div class="default">
+      <h4>Most recently used</h4>
+      <div class="pl-2 address" [class]="{'active': active === 'default'}">
+        <input type="radio" value="default" name="address" [(ngModel)]="active">
+        <span>Hang lian 12425 WHISPER HOLLOW DR APT J, MARYLAND HEIGHTS, MO, 63043-3698 United States Edit address |</span>
+      <div>
+        <span><a>Edit address |</a></span>
+        <span><a>Remove</a></span>
+      </div>
+      </div>
+    </div>
+    <div class="other-address mt-2">
+      <h4>Other addresses</h4>
+      <div class="pl-2 mb-2 address" [class]="{'active': active === i}" *ngFor="let address of addresses; index as i">
+        <input type="radio" [value]="i" name="address" [(ngModel)]="active">
+        <span>{{ address }}</span>
+        <div>
+          <span><a>Edit address |</a></span>
+          <span><a>Remove</a></span>
+        </div>
+      </div>
+      <div class="pl-2 mt-2"><a (click)="changeEditMode()">Add a new address</a></div>
+    </div>
+  </div>
+
+  <div class="container-fluid shipping ml-2 mr-2" [hidden]="!editmode">
+    <div class="new-address p-2">
+      <form [formGroup]="shippingForm">
+        <h4>Add a new address</h4>
+        <my-input *ngIf="addressType !== 'billing'" label="Full name" type="text" [formControl]="shippingForm.controls['fullName']" [control]="shippingForm.controls['fullName']"></my-input>
+        <my-input label="Address line 1" type="text" [formControl]="shippingForm.controls['address1']" [control]="shippingForm.controls['address1']"></my-input>
+        <my-input label="Address line 2" type="text" [formControl]="shippingForm.controls['address2']" [control]="shippingForm.controls['address2']"></my-input>
+        <my-input label="city" type="text" [formControl]="shippingForm.controls['city']" [control]="shippingForm.controls['city']"></my-input>
+        <my-input label="State/Region/Province" type="text" [formControl]="shippingForm.controls['state']" [control]="shippingForm.controls['state']"></my-input>
+        <my-input label="Zip Code" type="text" [formControl]="shippingForm.controls['zip']" [control]="shippingForm.controls['zip']"></my-input>
+        <my-input label="Country/Region" type="text" [formControl]="shippingForm.controls['country']" [control]="shippingForm.controls['country']"></my-input>
+        <my-input *ngIf="addressType !== 'billing'" label="phone number" type="text" [formControl]="shippingForm.controls['phone']" [control]="shippingForm.controls['phone']"></my-input>
+        <button class="btn btn-blue">Save address</button>
+      </form>
+    </div>
+  </div>
+</div>
