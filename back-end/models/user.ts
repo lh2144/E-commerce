@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         ref: 'Cart'
     },
-    address: AddressSchema
+    address: [AddressSchema]
 });
 export default mongoose.model('User', userSchema) ;
 
