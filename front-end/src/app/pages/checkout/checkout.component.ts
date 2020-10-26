@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+    selector: 'my-checkout',
+    templateUrl: './checkout.component.html',
+    styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
-  public activeDelivery;
-  constructor() { }
+    public activeDelivery;
+    public constructor() {}
 
-  ngOnInit(): void {
-  }
-
+    public ngOnInit(): void {}
 }
