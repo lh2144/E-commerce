@@ -56,10 +56,10 @@ export class RegisterComponent implements OnInit {
     public register(): void {
         if (this.validForm()) {
           const payload = {};
-          payload['name'] = this.controls['name'];
-          payload['email'] = this.controls['email'];
-          payload['password'] = this.controls['password'];
-          payload['phone'] = this.controls['phone'];
+          payload['name'] = this.controls['name'].value;
+          payload['email'] = this.controls['email'].value;
+          payload['password'] = this.controls['password'].value;
+          payload['phone'] = this.controls['phone'].value;
           this.customerService.register(payload).subscribe();
         }
     }

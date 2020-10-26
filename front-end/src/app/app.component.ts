@@ -25,24 +25,28 @@ export class AppComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.customerService.login({}).subscribe(
-            (_) => {},
-            (err) => {
-              localStorage.removeItem('sessionToken');
-            }
-        );
-        this.currentUser.pipe(distinctUntilChanged((x, y) => x.name === y.name)).subscribe((user) => {
-          if (user.name) {
-            this.carService.getCart().subscribe();
-          }
-        });
+        if (localStorage.getItem('sessionToken')) {
+            this.customerService.login({}).subscribe(
+                (_) => {},
+                (err) => {
+                    localStorage.removeItem('sessionToken');
+                }
+            );
+        }
+        this.currentUser
+            .pipe(distinctUntilChanged((x, y) => x.name === y.name))
+            .subscribe((user) => {
+                if (user.name) {
+                    this.carService.getCart().subscribe();
+                }
+            });
         this.productService.getAllProduct().subscribe();
     }
 
     @HostListener('click', ['$event'])
     public collapseDropDown(e: Event): void {
-      if (!(e.target as HTMLElement).closest('.dropbtn')) {
-        this.stateService.toggleBackDrop();
-      }
+        if (!(e.target as HTMLElement).closest('.dropbtn')) {
+            this.stateService.toggleBackDrop();
+        }
     }
 }
