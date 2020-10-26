@@ -7,6 +7,7 @@ import {
     OnInit,
     ViewChild,
 } from '@angular/core';
+import { PaymentService } from 'src/app/shared/service/payment.service';
 @Component({
     selector: 'my-checkout',
     templateUrl: './checkout.component.html',
@@ -19,7 +20,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
     public showCard;
     public cardHandler = this.onChange.bind(this);
     public cardError: string;
-    public constructor(private cd: ChangeDetectorRef) {}
+
+    public constructor(private cd: ChangeDetectorRef, public paymentService: PaymentService) {}
 
     public ngOnInit(): void {}
 
@@ -56,9 +58,11 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
     public ngAfterViewInit() {
         // this.initiateCardElement();
     }
+
     public mountCard(): void {
       setTimeout(this.initiateCardElement, 0);
     }
+
     public ngOnDestroy(): void {
         if (this.card) {
             // We remove event listener here to keep memory clean
@@ -68,6 +72,25 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     public placeOrder(): void {
-      
+      this.paymentService.getClientSecret().subscribe((res) => {
+        if (res.client_secret) {
+          stripe.confirmCardPayment(res.client_secret, {
+            payment_method: {
+              card: this.card,
+              billing_details: {
+                name: 'hang'
+              }
+            }
+          }).then(result => {
+            if (result.error) {
+
+            } else {
+              if (result.paymentIntent.status === 'succeeded') {
+
+              }
+            }
+          });
+        }
+      });
     }
 }
