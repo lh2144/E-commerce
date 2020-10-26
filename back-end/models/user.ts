@@ -34,7 +34,11 @@ const userSchema = new mongoose.Schema({
         type: Date,
         required: false
     },
-    address: AddressSchema
+    cart: {
+        type: String,
+        ref: 'Cart'
+    },
+    address: [AddressSchema]
 });
 export default mongoose.model('User', userSchema) ;
 
