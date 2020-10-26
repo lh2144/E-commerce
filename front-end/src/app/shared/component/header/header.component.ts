@@ -5,7 +5,7 @@ import { CustomerService } from 'service';
 import { CartQuery } from 'src/app/core/service/cart/cart.query';
 import { CartItem } from 'src/app/core/service/cart/cartItem.modal';
 import { UserQuery } from 'src/app/core/service/customer/customer.query';
-import { UserStore } from 'src/app/core/service/customer/customer.store';
+import { createInitialState, UserStore } from 'src/app/core/service/customer/customer.store';
 import { StateService } from '../../service/state.service';
 
 @Component({
@@ -53,7 +53,10 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    public logout(): void {}
+    public logout(): void {
+      localStorage.removeItem('sessionToken');
+      this.userStore.update(createInitialState());
+    }
 
     public ondropDownClick(e: Event, type: string): void {
         this.showDropDown[type] = true;

@@ -12,15 +12,7 @@ export class CustomerService {
     public constructor(public store: UserStore, public http: HttpClient) {}
 
     public login(body): Observable<UserState> {
-        return this.http.post<UserState>(this.baseUrl + 'login', body).pipe(
-            map((res: UserState) => {
-                this.store.update({ ...res });
-                if (res.token) {
-                  localStorage.setItem('sessionToken', res.token);
-                }
-                return res;
-            })
-        );
+        return this.http.post<UserState>(this.baseUrl + 'login', body);
     }
 
     public register(body): Observable<UserState> {
