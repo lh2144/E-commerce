@@ -1,0 +1,17 @@
+@import 'variable';
+
+.address-wrapper {
+  a {
+    color: $blue-dark;
+    cursor: pointer;
+
+  }
+  .active {
+    border: 2px solid $blue-dark;
+    border-radius: 5px;
+  }
+  header {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

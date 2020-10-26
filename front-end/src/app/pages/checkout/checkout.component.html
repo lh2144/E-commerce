@@ -1,0 +1,82 @@
+<div class="checkout-wrapper pt-4 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="row no-gutters info p-1 flex-column">
+                <section class="p-2 shipping my-card">
+                    <header>1.Shipping Address</header>
+                    <my-address [editmode]="false"></my-address>
+                </section>
+                <section class="mt-3 p-2 delivery my-card">
+                  <header>2.Select Delivery Option</header>
+                  <div>
+                    <div class="pl-4 mt-2" [class]="{'active': activeDelivery === '1'}">
+                      <input type="radio" value="1" name="delivery" [(ngModel)]="activeDelivery">
+                      <span>Tracked Delivery</span>
+                      <div class="pl-2">Delivered within 3-7 working days</div>
+                      <div class="pl-2">Free</div>
+                      <div class="pl-2">Receive updates to monitor the progress of your delivery</div>
+                    </div>
+                    <div class="pl-4 mt-2" [class]="{'active': activeDelivery === '2'}">
+                      <input type="radio" value="2" name="delivery" [(ngModel)]="activeDelivery">
+                      <span>Express Delivery</span>
+                      <div class="pl-2">Delivered within 1-2 working days</div>
+                      <div class="pl-2">Free</div>
+                      <div class="pl-2">Receive updates to monitor the progress of your delivery</div>
+                    </div>
+                  </div>
+                </section>
+                <section class="mt-3 p-2 payment my-card">
+                  <header>3.Select Payment method</header>
+                  <div>
+                    <div class="pl-4 mt-2">
+                      <input type="radio" name="payment" value="true" [(ngModel)]="showCard" (change)="mountCard()">
+                      <span>Add New Card</span>
+                    </div>
+                    <div class="pl-4 mt-3 mb-3" *ngIf="showCard" [class]="{'active': showCard === 'true'}">
+                      <div id="card-element" #cardInfo></div>
+                      <div id="card-errors" role="alert" *ngIf="cardError"></div>
+                    </div>
+                    <div class="billing-address pl-4 mt-2">
+                      <div class="">
+                        <span class="d-inline-block"><input type="radio" name="billAddress" [value]="1">Billing Addres same as shipping address</span>
+                        <span class="d-inline-block pl-2"><input type="radio" name="billAddress" [value]="2">Use a different Address</span>
+                      </div>
+
+                    </div>
+                  </div>
+                </section>
+                  <button class="btn btn-blue" id="submit" (click)="placeOrder()">Submit Your order</button>
+            </div>
+            <div class="summary">
+              <section class="p-3 my-card">
+                <div class="row no-gutters">
+                  <div class="flex-grow-1">Order Summary</div>
+                  <div class="">2 items</div>
+                </div>
+                <div class="mt-2 row no-gutters mt-2">
+                  <div class="img">
+                    <img src="" width="70" height="70">
+                  </div>
+                  <div class="flex-grow-1 row no-gutters flex-column pl-2">
+                    <div>Mp woemens prowerfsftest</div>
+                    <div>Quantity: 2</div>
+                    <div>$84.00</div>
+                  </div>
+                </div>
+                <div class="row no-gutters mt-2">
+                  <div class="flex-grow-1">Tracked Delivery</div>
+                  <div class="">Free</div>
+                </div>
+                <div class="tax row no-gutters mt-2">
+                  <div class="flex-grow-1">Sales Tax</div>
+                  <div>$34.32</div>
+                </div>
+                <div class="row no-gutters mt-2">
+                  <div class="flex-grow-1">Total to pay</div>
+                  <div>$87.54</div>
+                </div>
+              </section>
+            </div>
+        </div>
+    </div>
+</div>

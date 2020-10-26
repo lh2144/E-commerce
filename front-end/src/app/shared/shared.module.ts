@@ -10,6 +10,7 @@ import { ProductCardComponent } from './component/product-card/product-card.comp
 import { RouterModule } from '@angular/router';
 import { CommentComponent } from './component/comment/comment.component';
 import { CartItemComponent } from './component/cart-item/cart-item.component';
+import { AddressComponent } from './component/address/address.component';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { CartItemComponent } from './component/cart-item/cart-item.component';
         CommentComponent,
         CartItemComponent,
         ProductCardComponent,
+        AddressComponent,
         ReactiveFormsModule,
         FormsModule,
         CarouselComponent,
@@ -39,7 +41,8 @@ import { CartItemComponent } from './component/cart-item/cart-item.component';
       CarouselComponent,
       ProductCardComponent,
       CommentComponent,
-      CartItemComponent
+      CartItemComponent,
+      AddressComponent
     ],
     providers: [],
 })
