@@ -29,14 +29,23 @@
                   <header>3.Select Payment method</header>
                   <div>
                     <div class="pl-4 mt-2">
-                      <input type="radio" name="payment">
+                      <input type="radio" name="payment" value="true" [(ngModel)]="showCard" (change)="mountCard()">
                       <span>Add New Card</span>
+                    </div>
+                    <div class="pl-4 mt-3 mb-3" *ngIf="showCard" [class]="{'active': showCard === 'true'}">
+                      <div id="card-element" #cardInfo></div>
+                      <div id="card-errors" role="alert" *ngIf="cardError"></div>
+                    </div>
+                    <div class="billing-address pl-4 mt-2">
+                      <div class="">
+                        <span class="d-inline-block"><input type="radio" name="billAddress" [value]="1">Billing Addres same as shipping address</span>
+                        <span class="d-inline-block pl-2"><input type="radio" name="billAddress" [value]="2">Use a different Address</span>
+                      </div>
 
-                      <ng-template></ng-template>
                     </div>
                   </div>
                 </section>
-                  <button class="btn btn-blue">Submit Your order</button>
+                  <button class="btn btn-blue" id="submit" (click)="placeOrder()">Submit Your order</button>
             </div>
             <div class="summary">
               <section class="p-3 my-card">
