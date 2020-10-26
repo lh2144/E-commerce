@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
     public card: any;
     public activeDelivery;
     public showCard;
-    public cardHandler = this.onChange.bind(this);
+    public cardHandler;
     public cardError: string;
 
     public constructor(private cd: ChangeDetectorRef, public paymentService: PaymentService) {}
@@ -41,12 +41,12 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
             iconColor: '#fa755a',
         },
         };
-        this.card = elements.create('card', {cardStyle: style });
+        this.card = elements.create('card', { style });
         this.card.mount('#card-element');
-        this.card.addEventListener('change', this.cardHandler);
+        this.card.on('change', this.onChanges.bind(this));
     }
 
-    public onChange({ error }) {
+    public onChanges({ error }) {
         if (error) {
             this.cardError = error.message;
         } else {
@@ -60,7 +60,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     public mountCard(): void {
-      setTimeout(this.initiateCardElement, 0);
+      setTimeout(this.initiateCardElement.bind(this), 0);
     }
 
     public ngOnDestroy(): void {
@@ -82,8 +82,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterViewInit {
               }
             }
           }).then(result => {
+            console.log(result);
             if (result.error) {
-
             } else {
               if (result.paymentIntent.status === 'succeeded') {
 
