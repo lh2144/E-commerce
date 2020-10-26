@@ -8,7 +8,7 @@ import { ObjectID } from 'mongodb';
 
 // const ObjectId = mongoose.Types.ObjectId;
 const stripe = require('stripe')(
-    'pk_test_51HfxuTEODCEgB92csJjsHcLCdScmobY2pdaAhK8XjnOyxbBBkzBIHSrYHsGgEZQhs7mlYOe33TDMAM5rDiehWfek00p7E2wGpn'
+    'sk_test_51HfxuTEODCEgB92cXFmEitoCYWIljD5pNixd2zwCk71bScTzwblIRPkptB1z1UqFRwvNcMEN1WoOeE0GUJIw1MOj00PitvmFYI'
 );
 
 const getCart = async (req: Request, res: Response, next) => {
@@ -90,7 +90,7 @@ const getPaymentIntent = async (req: Request, res: Response, next) => {
         if (!cart) {
             throw error('cart dont exits', 500);
         }
-        const amount = cart['totalPrice'];
+        const amount = Math.ceil(cart['totalPrice']);
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: 'usd',
