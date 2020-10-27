@@ -30,11 +30,7 @@ export class LoginComponent implements OnInit {
     const payload = { };
     payload['email'] = this.loginForm.controls.email.value;
     payload['password'] = this.loginForm.controls.password.value;
-    this.userService.login(payload).subscribe((res: UserState) => {
-      this.userStore.update({ ...res });
-      if (res.token) {
-        localStorage.setItem('sessionToken', res.token);
-      }
+    this.userService.login(payload).subscribe((_) => {
       this.router.navigate(['/home']);
     });
   }
