@@ -5,6 +5,7 @@ import productRouter from './routes/product';
 import commentRouter from './routes/comment';
 import cartRouter from './routes/cart';
 import db from './db/mongoose';
+import session from 'express-session';
 
 const app = express();
 const port = 8080;
