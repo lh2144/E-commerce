@@ -5,30 +5,28 @@ import { Request, Response } from 'express';
 import { error } from '../middleware/error';
 import mongoose from 'mongoose';
 import { ObjectID } from 'mongodb';
+import user from '../models/user';
 
 // const ObjectId = mongoose.Types.ObjectId;
 const stripe = require('stripe')(
-    'pk_test_51HfxuTEODCEgB92csJjsHcLCdScmobY2pdaAhK8XjnOyxbBBkzBIHSrYHsGgEZQhs7mlYOe33TDMAM5rDiehWfek00p7E2wGpn'
+    'sk_test_51HfxuTEODCEgB92cXFmEitoCYWIljD5pNixd2zwCk71bScTzwblIRPkptB1z1UqFRwvNcMEN1WoOeE0GUJIw1MOj00PitvmFYI'
 );
 
 const getCart = async (req: Request, res: Response, next) => {
-    if (!req['isLogged']) {
-        const err = new Error('user should log in to fetch cart');
-        err['statusCode'] = 402;
-        throw err;
-    }
-    const userId = req['id'];
     try {
-        const cart = await Cart.findById(userId);
-        if (cart) {
-            res.status(201).json({
-                items: cart['items'],
-                shippingAddress: cart['shippingAddress'],
-                contactEmail: cart['contactEmail'],
-                totalPrice: cart['totalPrice'],
-            });
+        const sessionId = res.get('sessionId');
+        if (sessionId) {
+            const cart = await Cart.findById(sessionId);
+            if (cart) {
+                res.status(201).json({
+                    items: cart['items'],
+                    shippingAddress: cart['shippingAddress'],
+                    contactEmail: cart['contactEmail'],
+                    totalPrice: cart['totalPrice'],
+                });
+            }
         } else {
-            res.status(200).json({});
+            throw error('no cart found in db', 500);
         }
     } catch (err) {
         next(err);
@@ -36,61 +34,56 @@ const getCart = async (req: Request, res: Response, next) => {
 };
 
 const postCart = async (req: Request, res: Response, next) => {
-    if (!req['isLogged']) {
-        const err = new Error('user should log in to fetch cart');
-        err['statusCode'] = 402;
-        throw err;
-    }
-    const cartId = req['id'];
-    const items = req.body.items;
-    const totalPrice = req.body.totalPrice;
     try {
-        let shippingAddress;
-        let contactEmail;
-        const user = await User.findById(cartId);
-        if (user) {
-            shippingAddress = user['address'];
-            contactEmail = user['email'];
-        }
-
-        const activeCart = await Cart.findById(cartId);
-        if (activeCart) {
-            await Cart.updateOne({ _id: cartId }, { totalPrice, items });
-            const updateCart = await Cart.findById(cartId);
-            console.log(updateCart);
-            if (updateCart) {
-                res.status(200).json({ id: cartId, totalPrice: updateCart['totalPrice'], items: updateCart['items'] });
-                res.end();
-            }
-        } else {
+        let sessionId = req.get('sessionId');
+        const items = req.body.items;
+        const totalPrice = req.body.totalPrice;
+        if (!sessionId) {
+            sessionId = genereateOrderId();
             const cart = new Cart({
-                _id: cartId,
-                shippingAddress,
-                contactEmail,
+                _id: sessionId,
                 items,
                 totalPrice,
             });
             await cart.save();
-            res.status(200).json({ id: cartId, totalPrice, items });
+            res.status(200).json({ id: sessionId, totalPrice, items });
             res.end();
+        } else {
+            const updatedCart = await Cart.findByIdAndUpdate(sessionId, { items, totalPrice }, { new: true });
+            if (updatedCart) {
+                res.status(200).json({ id: sessionId, totalPrice: updatedCart['totalPrice'], items: updatedCart['items'] });
+                res.end();
+            }
         }
     } catch (err) {
-        if (!err['statusCode']) {
-            err['statusCode'] = 500;
-            next(err);
+        next(err);
+    }
+};
+
+const syncCart = async (req: Request, res: Response, next) => {
+    try {
+        const userId = req['id'];
+        const sessionId = req.get('sessionId');
+        const cart = await Cart.findById(sessionId);
+        const user = await User.findByIdAndUpdate(userId, {cart: sessionId}, {new: true});
+        if (!cart || !user) {
+            throw error('cart doesnt exits', 500);
         }
+        res.status(200).json({id: sessionId, items: cart['items'], totalPrice: cart['totalPrice']});
+    } catch (err) {
+        next(err);
     }
 };
 
 const getPaymentIntent = async (req: Request, res: Response, next) => {
-    const userId = req['id'];
 
     try {
+        const userId = req['id'];
         const cart = await Cart.findById(userId);
         if (!cart) {
             throw error('cart dont exits', 500);
         }
-        const amount = cart['totalPrice'];
+        const amount = Math.ceil(cart['totalPrice']);
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: 'usd',
@@ -103,8 +96,8 @@ const getPaymentIntent = async (req: Request, res: Response, next) => {
 };
 
 const placeOrder = async (req: Request, res: Response, next) => {
-    const userId = req['id'];
     try {
+        const userId = req['id'];
         const user = await User.findById(userId).populate('cart').exec();
         if (!user) {
             throw error('user dont exist or some db issuer', 500);
@@ -120,7 +113,7 @@ const placeOrder = async (req: Request, res: Response, next) => {
         const order = new Order({
             _id: orderId,
             userId: new ObjectID(userId),
-            products
+            products,
         });
         await order.save();
         res.status(200).json({ email, products, totalPrice });
@@ -139,9 +132,8 @@ function genereateOrderId(): string {
     const second = data.getSeconds;
     const random = Math.floor(Math.random() * 10);
     let res = '';
-    res = year.toString() + '-' +
-        month.toString() + date.toString() + hour.toString() + '-' +
-        minute.toString() + second.toString() + random;
+    res =
+        year.toString() + '-' + month.toString() + date.toString() + hour.toString() + '-' + minute.toString() + second.toString() + random;
     return res;
 }
-export { getCart, postCart, placeOrder, getPaymentIntent };
+export { getCart, postCart, syncCart, placeOrder, getPaymentIntent };

@@ -6,7 +6,8 @@ export const AddressSchema = new Schema({
     address2: String,
     city: String,
     state: String,
-    zip: Number
+    zip: Number,
+    phone: Number
 });
 
 export default mongoose.model('Address', AddressSchema);
