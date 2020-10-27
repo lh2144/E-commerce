@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
         public userQuery: UserQuery,
         public productService: ProductService,
         public stateService: StateService,
-        public carService: CartService
+        public cartService: CartService
     ) {}
 
     public ngOnInit(): void {
@@ -33,13 +33,16 @@ export class AppComponent implements OnInit {
                 }
             );
         }
-        this.currentUser
-            .pipe(distinctUntilChanged((x, y) => x.name === y.name))
-            .subscribe((user) => {
-                if (user.name) {
-                    this.carService.getCart().subscribe();
-                }
-            });
+        // this.currentUser
+        //     .pipe(distinctUntilChanged((x, y) => x.name === y.name))
+        //     .subscribe((user) => {
+        //         if (user.name) {
+        //             this.cartService.getCart().subscribe();
+        //         }
+        //     });
+        if (this.cartService.cart?.items?.length > 0) {
+          this.cartService.getCart().subscribe();
+        }
         this.productService.getAllProduct().subscribe();
     }
 
