@@ -96,8 +96,8 @@ const getPaymentIntent = async (req: Request, res: Response, next) => {
 };
 
 const placeOrder = async (req: Request, res: Response, next) => {
-    const userId = req['id'];
     try {
+        const userId = req['id'];
         const user = await User.findById(userId).populate('cart').exec();
         if (!user) {
             throw error('user dont exist or some db issuer', 500);
