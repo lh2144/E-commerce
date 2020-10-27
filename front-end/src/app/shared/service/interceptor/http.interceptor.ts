@@ -7,9 +7,14 @@ import { catchError } from 'rxjs/operators';
 export class AuthInterceptor implements HttpInterceptor {
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const sessionToken = localStorage.getItem('sessionToken');
+    const sessionId = localStorage.getItem('sessionId');
     let headers: HttpHeaders = new HttpHeaders().append('Content-Type', 'application/json');
     if (sessionToken) {
       headers = headers.append('Authorization', `Bearer ${sessionToken}`);
+    }
+
+    if (sessionId) {
+      headers = headers.append('sessionId', sessionId);
     }
     req = req.clone({headers});
     return next.handle(req).pipe(
