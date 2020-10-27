@@ -3,8 +3,8 @@ import { getCart, postCart, getPaymentIntent, placeOrder } from '../controllers/
 import { isAuth } from '../middleware/is-auth';
 const router = exprss.Router();
 
-router.get('/cart', isAuth, getCart);
-router.post('/cart', isAuth, postCart);
+router.get('/cart', getCart);
+router.post('/cart', postCart);
 router.get('/paymentIntent', isAuth, getPaymentIntent);
 router.post('/placeorder', isAuth, placeOrder);
 
