@@ -5,6 +5,7 @@ import { Request, Response } from 'express';
 import { error } from '../middleware/error';
 import mongoose from 'mongoose';
 import { ObjectID } from 'mongodb';
+import user from '../models/user';
 
 // const ObjectId = mongoose.Types.ObjectId;
 const stripe = require('stripe')(
@@ -59,10 +60,25 @@ const postCart = async (req: Request, res: Response, next) => {
     }
 };
 
+const syncCart = async (req: Request, res: Response, next) => {
+    try {
+        const userId = req['id'];
+        const sessionId = req.get('sessionId');
+        const cart = await Cart.findById(sessionId);
+        const user = await User.findByIdAndUpdate(userId, {cart: sessionId}, {new: true});
+        if (!cart || !user) {
+            throw error('cart doesnt exits', 500);
+        }
+        res.status(200).json({id: sessionId, items: cart['items'], totalPrice: cart['totalPrice']});
+    } catch (err) {
+        next(err);
+    }
+};
+
 const getPaymentIntent = async (req: Request, res: Response, next) => {
-    const userId = req['id'];
 
     try {
+        const userId = req['id'];
         const cart = await Cart.findById(userId);
         if (!cart) {
             throw error('cart dont exits', 500);
@@ -120,4 +136,4 @@ function genereateOrderId(): string {
         year.toString() + '-' + month.toString() + date.toString() + hour.toString() + '-' + minute.toString() + second.toString() + random;
     return res;
 }
-export { getCart, postCart, placeOrder, getPaymentIntent };
+export { getCart, postCart, syncCart, placeOrder, getPaymentIntent };
